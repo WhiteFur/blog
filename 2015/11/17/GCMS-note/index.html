@@ -1,0 +1,754 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GCMS,vault," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Handpay
+HandpayTime - 這筆handpay在機台發生的時間
+OverrideFlag - 被supervisor改過才設為1
+dbo.CashierSession的Handpay_Trans_Seq - 指下一次做handpay操作時，要insert到dbo.Handpay_Session_Trans的Trans_Seq
+OperatorModifyTime - 只要對這筆re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCMS note">
+<meta property="og:url" content="http://whitefur.github.io/blog/2015/11/17/GCMS-note/index.html">
+<meta property="og:site_name" content="whiteFur">
+<meta property="og:description" content="Handpay
+HandpayTime - 這筆handpay在機台發生的時間
+OverrideFlag - 被supervisor改過才設為1
+dbo.CashierSession的Handpay_Trans_Seq - 指下一次做handpay操作時，要insert到dbo.Handpay_Session_Trans的Trans_Seq
+OperatorModifyTime - 只要對這筆re">
+<meta property="og:image" content="http://whitefur.github.io/blog/blog/2015/11/17/GCMS-note/SecureEnhancedAlgo_01.jpg">
+<meta property="og:image" content="http://whitefur.github.io/blog/blog/2015/11/17/GCMS-note/SecureEnhancedAlgo_02.jpg">
+<meta property="og:image" content="http://whitefur.github.io/blog/blog/2015/11/17/GCMS-note/2.png">
+<meta property="og:updated_time" content="2016-06-27T03:37:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCMS note">
+<meta name="twitter:description" content="Handpay
+HandpayTime - 這筆handpay在機台發生的時間
+OverrideFlag - 被supervisor改過才設為1
+dbo.CashierSession的Handpay_Trans_Seq - 指下一次做handpay操作時，要insert到dbo.Handpay_Session_Trans的Trans_Seq
+OperatorModifyTime - 只要對這筆re">
+<meta name="twitter:image" content="http://whitefur.github.io/blog/blog/2015/11/17/GCMS-note/SecureEnhancedAlgo_01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://whitefur.github.io/blog/2015/11/17/GCMS-note/"/>
+
+  <title> GCMS note | whiteFur </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">whiteFur</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GCMS note
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2015-11-17T15:11:25+08:00" content="2015-11-17">
+              2015-11-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Handpay"><a href="#Handpay" class="headerlink" title="Handpay"></a>Handpay</h1><ul>
+<li>HandpayTime - 這筆handpay在機台發生的時間</li>
+<li>OverrideFlag - 被supervisor改過才設為1</li>
+<li>dbo.CashierSession的Handpay_Trans_Seq - 指下一次做handpay操作時，要insert到dbo.Handpay_Session_Trans的Trans_Seq</li>
+<li>OperatorModifyTime - 只要對這筆record做UPDATE都要記時間</li>
+<li>有三種handpay<ul>
+<li>Cancel Credit<br>Cash Out limit:<br>Ticket Mode:玩家按下Cash out button時，若金額超過此門檻值，機台會跳Cancel Credit Handpay<br>AFT Mode: 當WAT out金額超過此值且系統要求全額交易，機台會跳Cancel Credit Handpay</li>
+<li>Machine Paid Jackpot Handpay or External Bonus Paid handpay<br>Jackpot limit: 當彩金打入機台時或者單把得分超過此值，機台會跳Jackpot Handpay</li>
+<li>Progressive</li>
+</ul>
+</li>
+</ul>
+<h3 id="Manual-Add-Handpay"><a href="#Manual-Add-Handpay" class="headerlink" title="Manual Add Handpay"></a>Manual Add Handpay</h3><ul>
+<li>需supervisor confirm</li>
+<li>因為supervisor confirm，所以dbo.Handpay的OverrideFlag = 1, dbo.Handpay_Session_Trans的Audit_Paid = 1</li>
+<li>dbo.Handpay_Session_Trans的Session_Trans_Type = 1</li>
+</ul>
+<h1 id="Ticket"><a href="#Ticket" class="headerlink" title="Ticket"></a>Ticket</h1><ul>
+<li>Audit_Paid - 是否有 Supervisor confirm。0: No, 1:Yes</li>
+<li>ExpireDate - [Print_Date] + 上有效天數([Configuration_Ack].[dbo].[ConfigParameter] - CSH_TKT_EXPIRE_DAYS)</li>
+<li>資料庫的Validation_Code為密碼, 與workstation傳輸的票號則為明碼(一開始產出的票號)</li>
+</ul>
+<h3 id="dbo-TKT-WK-GetValidSeed"><a href="#dbo-TKT-WK-GetValidSeed" class="headerlink" title="dbo.TKT_WK_GetValidSeed"></a>dbo.TKT_WK_GetValidSeed</h3><ul>
+<li>@_ticketIssueSeq (即dbo.TKT_Seed_Cashier的TKTSeq &amp; dbo.Ticket的Mch_TKT_Seq) - 目前這張是這個workstation開的第幾張票</li>
+<li>票號: ApServer 拿dbo.TKT_Seed_Cashier的ValidationId &amp; CurSeqNum來產生票號  <img src="/blog/2015/11/17/GCMS-note/SecureEnhancedAlgo_01.jpg" alt="Secure Enhanced Validation Algorithm" title="Secure Enhanced Validation Algorithm">
+  <img src="/blog/2015/11/17/GCMS-note/SecureEnhancedAlgo_02.jpg" alt="Secure Enhanced Validation Algorithm" title="Secure Enhanced Validation Algorithm"></li>
+<li>Ticket_State 請參考[Configuration_Ack].[dbo].[Ticket_State]</li>
+</ul>
+<h3 id="dbo-TKT-Session-Trans"><a href="#dbo-TKT-Session-Trans" class="headerlink" title="dbo.TKT_Session_Trans"></a>dbo.TKT_Session_Trans</h3><p>每次對票操作都會寫一筆，也就是說同一張票會有多筆</p>
+<h3 id="Damage"><a href="#Damage" class="headerlink" title="Damage"></a>Damage</h3><p>票掃不出來時，用此功能去找此票的完整資訊，再去轉機台，與機台的印票資訊做比對，確認這張票真的是機台印出來的</p>
+<h3 id="Pending-Validation"><a href="#Pending-Validation" class="headerlink" title="Pending Validation"></a>Pending Validation</h3><p>入票後，票會先卡在acceptor，以掃瞄票的barcode，此時Ticket_State會從UnPaid (Ticket_State = 1) 改成Pending Validation (Ticket_State = 6)。<br>掃完後，票才會掉到鈔盒，狀態變為Paid Externally (Ticket_State = 7)。<br>這個吃票的流程需在一定時間完成，若因故timeout，則票的狀態會停在Pending Validation，那這張票就不能用了，玩家會把票拿到Cashier解pending</p>
+<h3 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h3><ul>
+<li>用來查看這張票的狀態歷程</li>
+<li>解pending: 如果此票狀態目前為pending(Ticket_State = 6)，則可Void/Paid Externally/Unpaid<br>  Paid Externally - 已經被機台pay掉了，但Ticket_State為pending，此時就把它改為Paid Externally，Paid_Date給當下的時間</li>
+</ul>
+<h3 id="分票-Seperate-Ticket-流程"><a href="#分票-Seperate-Ticket-流程" class="headerlink" title="分票(Seperate Ticket)流程"></a>分票(Seperate Ticket)流程</h3><ol>
+<li>先validate票</li>
+<li>purchase分拆後的票<br>e.g., 分成三張票，則後端會先把該張票validate掉，再purchase三張票</li>
+</ol>
+<h3 id="關班掃票"><a href="#關班掃票" class="headerlink" title="關班掃票"></a>關班掃票</h3><p>把dbo.TKT_Session_Trans的Session_Trans_Type = 2 (Validation)的record的IsScanned改成1</p>
+<h3 id="Void-With-Handpay"><a href="#Void-With-Handpay" class="headerlink" title="Void With Handpay"></a>Void With Handpay</h3><ul>
+<li>只有EGM吐出來的票才能到Cashier做void with handpay</li>
+</ul>
+<h1 id="Liability"><a href="#Liability" class="headerlink" title="Liability"></a>Liability</h1><ul>
+<li>Confirm Collection時會去計算</li>
+<li>不包含Handpay</li>
+<li>Liability(Ticket Liability + Wallet Liability)<br>= Last Liability - WAT In + WAT Out + Deposit - Withdraw  <img src="/blog/2015/11/17/GCMS-note/2.png" alt="Liability" title="Liability">
+</li>
+</ul>
+<h1 id="Location-SectionName-BankIdx-EGMIdx-e-g-A10202"><a href="#Location-SectionName-BankIdx-EGMIdx-e-g-A10202" class="headerlink" title="Location = SectionName + BankIdx + EGMIdx e.g., A10202"></a>Location = SectionName + BankIdx + EGMIdx e.g., A10202</h1><ul>
+<li>SectionName - 店代碼</li>
+<li>BankIdx - 機台所在的bank編號</li>
+<li>EGMIdx - 機台在此bank的編號</li>
+</ul>
+<h1 id="Net-win"><a href="#Net-win" class="headerlink" title="Net win"></a>Net win</h1><h3 id="以押分及得分來看"><a href="#以押分及得分來看" class="headerlink" title="以押分及得分來看"></a>以押分及得分來看</h3><p>Net win = (Coin in(押分) - Coin out(得分) - Jackpot handpay) x accounting denon</p>
+<p>註:彩金或是單次得分超過jackpot limit時, 分數不會計入表底(即畫面上的credit), 而是直接跳出handpay畫面, 此時稱為jackpot handpay</p>
+<h3 id="從金流來看"><a href="#從金流來看" class="headerlink" title="從金流來看"></a>從金流來看</h3><p>Net win<br>= 金流入項 - 出項<br>= (Bill In + Ticket In + Coins In(即token in, 並非押分) + Cashless In) -<br>(Ticket out + Jackpot handpay out + cancelled credits(超過cash out的上限) + coin out(指token out, 並非指得分) + Cashless out)</p>
+<h1 id="清鈔"><a href="#清鈔" class="headerlink" title="清鈔"></a>清鈔</h1><p>固定時間(可能是6小時一次，甚至是三天一次)<br>打開機台門鎖-&gt;打開放鈔盒的門鎖-&gt;取出鈔盒(鈔盒上的鎖待送回金庫後,由清鈔人員打開)<br>所以一共有三道鎖</p>
+<h2 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h2><h3 id="CollectionTicketIn"><a href="#CollectionTicketIn" class="headerlink" title="CollectionTicketIn"></a>CollectionTicketIn</h3><p>相當於一代的CT_Ticket<br>其中的IsScaned, Scaned_Time, Scaned_Operator是用來給掃票用的<br>清票時, 有掃票的功能, 該功能為輔助清票程序, 可用可不用</p>
+<h1 id="Accounting"><a href="#Accounting" class="headerlink" title="Accounting"></a>Accounting</h1><h2 id="DB-1"><a href="#DB-1" class="headerlink" title="DB"></a>DB</h2><h3 id="PeriodMeter"><a href="#PeriodMeter" class="headerlink" title="PeriodMeter"></a>PeriodMeter</h3><p>從CurrentMtr抄過來的meter值, 以天為單位</p>
+<h3 id="Period"><a href="#Period" class="headerlink" title="Period"></a>Period</h3><p>由PeriodMeter計算後的結帳值</p>
+<h2 id="重覆票"><a href="#重覆票" class="headerlink" title="重覆票"></a>重覆票</h2><p>重複票不能被機器吃, 只能到工作站兌換</p>
+<h2 id="Accounting-day"><a href="#Accounting-day" class="headerlink" title="Accounting day"></a>Accounting day</h2><p>Bank.Account.Time - 僅做為與Period.Account.StartTime(切帳時間)比較的基準, 實際的時刻值沒有什麼作用</p>
+<p>if Period.Account.StartTime 在Bank.Account.Time 之前<br>則本日Period.Account.StartTime與明日Period.Account.StartTime之間的帳會歸在今天(Accounting day 為今天)<br>則本日Period.Account.StartTime與昨日Period.Account.StartTime之間的帳會歸在昨天</p>
+<p>if Period.Account.StartTime 在Bank.Account.Time 之後<br>則本日Period.Account.StartTime與明日Period.Account.StartTime之間的帳會歸在明天<br>則本日Period.Account.StartTime與昨日Period.Account.StartTime之間的帳會歸在今天</p>
+<p>e.g.<br>Bank.Account.Time = 15:00:00<br>Period.Account.StartTime = 09:30:00<br>=&gt; 結帳時, 帳會歸入昨天</p>
+<p>Bank.Account.Time = 15:00:00<br>Period.Account.StartTime = 19:30:00<br>=&gt; 結帳時, 帳會歸入今天</p>
+<h2 id="擋招擋玩"><a href="#擋招擋玩" class="headerlink" title="擋招擋玩"></a>擋招擋玩</h2><ul>
+<li>msMemberSectionBlockList記錄黑名單</li>
+<li>[Member_Ack].[dbo].[msMemberBlockType] - 黑名單類型(擋玩No play, 擋招No bonus, 擋食No food, No bingo coupon)</li>
+<li>NO PLAY或NO BONUS的情況下，皆不允許Add，但皆允許Sub loyalty</li>
+</ul>
+<h2 id="DB-instance"><a href="#DB-instance" class="headerlink" title="DB instance"></a>DB instance</h2><p>共用層級: Member_Ack, Configuration_Ack，共用層級的DB不能存取下層DB<br>e.g.<br>Configuration_Ack不要用同義字存取Cashflow_Ack，但Cashflow_Ack可以用同義字存取Configuration_Ack</p>
+<p>位置分佈: Member_Ack獨立一台，其餘都放在另一台，分佈在不同機器的db間不要互相存取<br>e.g.<br>1.Member_Ack與Configuration_Ack間不要用同義字<br>2.Member_Ack與Cashflow_Ack間不要用同義字</p>
+<h1 id="VaultSession"><a href="#VaultSession" class="headerlink" title="VaultSession"></a>VaultSession</h1><h2 id="該vault-session的collection-value-加總"><a href="#該vault-session的collection-value-加總" class="headerlink" title="該vault session的collection value 加總"></a>該vault session的collection value 加總</h2><ul>
+<li>[TTLSysSoftDrop]</li>
+<li>[TTLActSoftDrop]</li>
+<li>[TTLSysTicketDrop]</li>
+<li>[TTLActTicketDrop]</li>
+<li>[TTLSysCashTKTinNum]</li>
+<li>[TTLActCashTKTinNum]</li>
+<li>[TTLSysRestriTKTinNum]</li>
+<li>[TTLActRestriTKTinNum]</li>
+<li>[TTLSysNonRestriTKTinNum]</li>
+<li>[TTLActNonRestriTKTinNum]</li>
+</ul>
+<h2 id="Table-system用的-不必理會-自動帶db的default"><a href="#Table-system用的-不必理會-自動帶db的default" class="headerlink" title="Table system用的, 不必理會(自動帶db的default)"></a>Table system用的, 不必理會(自動帶db的default)</h2><ul>
+<li>[TTLInHouseIncome]</li>
+<li>[TTLInHouseOutcome]</li>
+<li>[TTLIncidentalIncome]</li>
+<li>[TTLIncidentalOutcome]</li>
+</ul>
+<h2 id="點數換現金"><a href="#點數換現金" class="headerlink" title="點數換現金"></a>點數換現金</h2><p>GroupTradeLimit 只卡SubReward 不卡IncidentalOutcome</p>
+<h2 id="loyalty-credit"><a href="#loyalty-credit" class="headerlink" title="loyalty credit"></a>loyalty credit</h2><p>有一支dbo.XtraCredit_Expire_Checkup會持續丟在job跑, 檢查msMemberAccTransList裡的addLoyalty record是否過期, 如果過期會把PointExpireFlag設為1, 並INSERT一筆Behavior=3的。並把msMemberAcc的loaylty credit扣掉</p>
+<h2 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h2><p>機台插卡時，cashier不能做bonus交易</p>
+<ul>
+<li>Reward Point<ul>
+<li>bet-reward: 押分就會給點 (每台機台有各自設定的回饋比例)</li>
+<li>win-reward: 贏分達多少才會給點(只適用尊博百家)</li>
+</ul>
+</li>
+<li><p>Loyalty Credit</p>
+<ul>
+<li>為吸引玩家回流，免費贈送給玩家的點數，只能玩掉，不能cash out，但贏的分數可以cash out</li>
+<li>玩家沒有付出就免費得到，所以店家會設定擋招規則，玩家平均押分量達多，才能開贈</li>
+<li>平均押分量 = total bet ÷ 在開贈期間的已開贈次數 (dbo.PL_CheckBanPromotion_V3_0_0_0)</li>
+<li>已開贈次數 = 已開贈點數(total add loyalty- total sub loyalty) ÷ Promotion Divisor</li>
+<li>二代不能從機台開贈</li>
+<li>Promotion Divisor為多店家共用</li>
+<li><p>Promotion Divisor從[Member_Ack].[dbo].[ConfigParameter]取得</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">CAST</span>(ParameterValue <span class="keyword">AS</span> <span class="built_in">int</span>) promoDivisor</span><br><span class="line"><span class="keyword">FROM</span> dbo.ConfigParameter</span><br><span class="line"><span class="keyword">WHERE</span> ParameterName = N<span class="string">'Member.Promotion.Divisor'</span></span><br></pre></td></tr></table></figure>
+<p> ps.[Member_Ack].[dbo].[ConfigParameter]裡的參數之所以不放在ConfigureAck是因為MemberAck跟ConfigureAck在不同機器，很多Member相關的參數如果跨DB的話，SQL會不好寫</p>
+</li>
+</ul>
+</li>
+<li><p>Bet Coupon<br>贏分超過多少就送一張，可以兌換成Loyalty credit或現金(根據[Member_Ack].[dbo].[BetCoupon_Config]的[RedeemMode])<br>兌換比例:根據[Member_Ack].[dbo].[BetCoupon_Config]的[RedeemUnit]<br>只會卡SubBetCoupon, 不會卡Loyalty跟零用金<br>e.g., 一張可redeem成900點Loyalty<br>ps. 各店家有不同的設定</p>
+<p>一定是一次兌換全部, e.g., 我的帳戶有5張bet coupon，那我去Cashier兌換時，一定是5張都redeem</p>
+<p>BetCoupon_TxnList的交易類型由Behavior + Status 組成</p>
+<p>redeem時, 會先把BetCoupon_TxnList Status = 0(Gain)的改為Status = 1 (Redeem)<br>再insert一筆sub的記錄<br>因為bet coupon的主表dbo.BetCoupon_MemberAmt只有記錄每個member擁有的coupon張數, 每筆coupon的狀態都記在dbo.BetCoupon_TxnList</p>
+</li>
+<li><p>紅黃券 (Lucky draw)</p>
+<ul>
+<li>摸彩券</li>
+<li>e.g., 1000點彩券點數換一張紅券, 10000點彩券點數換一張黃券</li>
+</ul>
+</li>
+<li><p>Bingo Coupon (隔日券)</p>
+</li>
+</ul>
+<h4 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h4><p>Sub Reward Point &amp; Add Loyalty Credit都是把錢送出去的意思，所以卡24hr(比卡單筆嚴格)</p>
+<h4 id="兌換禮物"><a href="#兌換禮物" class="headerlink" title="兌換禮物"></a>兌換禮物</h4><ul>
+<li>禮物品項設定表 dbo.msGift</li>
+</ul>
+<h2 id="ApServer-AccountingDay"><a href="#ApServer-AccountingDay" class="headerlink" title="ApServer AccountingDay"></a>ApServer AccountingDay</h2><p>gama-common-ap的configureService在算accountingDay時, 會取db目前的時間來算<br>所以呼叫這支的時候不用傳入目前date, 直接傳callback就好<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">configureService.getSessionAccountingDay(<span class="function"><span class="keyword">function</span>(<span class="params">err, result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(err)&#123;</span><br><span class="line">        callback(err);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//convert the value of accountingDay property from a moment object  to a Date</span></span><br><span class="line">      result.accountingDay = result.accountingDay.toISOString();</span><br><span class="line">      callback(<span class="literal">null</span>, result);</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<h1 id="Cashier關班金額"><a href="#Cashier關班金額" class="headerlink" title="Cashier關班金額"></a>Cashier關班金額</h1><ul>
+<li>session issued為加項</li>
+<li>sessionVoid為減項 - 因為void票會再開一張票給客人, 而開票為金流加項, 所以void要計為減項才會抵銷(因為這期間並無金錢流動)</li>
+<li>void with handpay不算進sessionVoid而是算進handpay</li>
+</ul>
+<h1 id="Cashless"><a href="#Cashless" class="headerlink" title="Cashless"></a>Cashless</h1><ul>
+<li><p>一帳務日內會限制同一會員的cashless總交易次數(PATRON_MAX_ACTIVITY) &amp; 總交易額(PATRON_MAX_AMOUNT)<br>(其實這當初是為poipet客製的，二代我們把它也整併進來)</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- dbo.WAT_Daily_Transaction_Limitation</span></span><br><span class="line"><span class="keyword">SELECT</span> @patronTodayAmount= TodayWATINAmount</span><br><span class="line">+ TodayWATOUTAmount</span><br><span class="line">+ TodayDepositAmount</span><br><span class="line">+ TodayWithdrawAmount,</span><br><span class="line">@patronTodayActivity=TodayTotalCashlessActivity,</span><br><span class="line">@rowCount=<span class="number">1</span></span><br><span class="line"><span class="keyword">FROM</span> dbo.WAT_LiabilityCashAccount </span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">Period</span>=@periodDate <span class="keyword">AND</span> SectionSerial=@sectionSerialOfPatron <span class="keyword">AND</span> MemberSerial=@memberSerialOfPatron</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deposit</p>
+<ol>
+<li>卡operator單筆<br>trade limit item: MaxDepositAmt</li>
+<li>卡operator在該session的總deposit(從dbo.WAT_SessionDepositByOperator計算) + 本次deposit:<br>trade limit item: MaxDepositAmtOfSession<br>如果超過，則需要supervisor confirm，此時要UPDATE WAT_SessionDepositByOperator，把TotalAmount reset成0。並寫一筆到WAT_SessionDepositResetRecord</li>
+</ol>
+</li>
+<li><p>Withdraw<br>  1.卡operator單筆 - MaxWithdrawAmt</p>
+</li>
+</ul>
+<h1 id="msMember"><a href="#msMember" class="headerlink" title="msMember"></a>msMember</h1><ul>
+<li>MemberStatus 會員狀態<ul>
+<li>0: Banned</li>
+<li>1: Active</li>
+<li>2: Abandon 插卡太久，沒動作，忘了拔</li>
+<li>3: Frozen 在Patron凍結該帳戶</li>
+<li>5: password failed warning status 鎖卡</li>
+</ul>
+</li>
+</ul>
+<h1 id="msPlayerBetLog"><a href="#msPlayerBetLog" class="headerlink" title="msPlayerBetLog"></a>msPlayerBetLog</h1><p>插卡就會UPDATE，每隔一段時間會UPDATE(e.g., 每隔五分鐘就會UPDATE一次)</p>
+<h1 id="msMemberAcc"><a href="#msMemberAcc" class="headerlink" title="msMemberAcc"></a>msMemberAcc</h1><p>會員帳戶資料</p>
+<h1 id="msPlayerSession"><a href="#msPlayerSession" class="headerlink" title="msPlayerSession"></a>msPlayerSession</h1><ul>
+<li>0~9為會員編號最末碼</li>
+<li>每次插拔卡的資料</li>
+<li>Card In, Card Out時會insert</li>
+</ul>
+<h1 id="Operator"><a href="#Operator" class="headerlink" title="Operator"></a>Operator</h1><ul>
+<li>二代的operator資料在[Configuration_Ack].[dbo].[Operator]</li>
+<li>一代的operator資料在[Member_Ack].[dbo].[msOperator]</li>
+</ul>
+<h1 id="GroupTradeLimit"><a href="#GroupTradeLimit" class="headerlink" title="GroupTradeLimit"></a>GroupTradeLimit</h1><ul>
+<li>事實上supervisor的作用就是用來confirm的，所以其實程式面也可以不必檢查supervisor的limit，因為實務上會把supervisor的limit設很高</li>
+</ul>
+<h1 id="Jackpot"><a href="#Jackpot" class="headerlink" title="Jackpot"></a>Jackpot</h1><ul>
+<li>mystery jackpot(神秘彩金): 由jackpot controller設定的一個神秘值(有一定上限), 當機台押分超過那個值, 就會拉到jackpot</li>
+<li>Progressive jackpot: 機台自己決定的jackpot</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/GCMS/" rel="tag">#GCMS</a>
+          
+            <a href="/blog/tags/vault/" rel="tag">#vault</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2015/11/06/chakram-usage/" rel="next" title="Using Chakram to test your Restful API">
+                <i class="fa fa-chevron-left"></i> Using Chakram to test your Restful API
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2015/12/18/Capital/" rel="prev" title="Capital">
+                Capital <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/avatar.gif"
+               alt="whiteFur" />
+          <p class="site-author-name" itemprop="name">whiteFur</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Handpay"><span class="nav-number">1.</span> <span class="nav-text">Handpay</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Manual-Add-Handpay"><span class="nav-number">1.0.1.</span> <span class="nav-text">Manual Add Handpay</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ticket"><span class="nav-number">2.</span> <span class="nav-text">Ticket</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dbo-TKT-WK-GetValidSeed"><span class="nav-number">2.0.1.</span> <span class="nav-text">dbo.TKT_WK_GetValidSeed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dbo-TKT-Session-Trans"><span class="nav-number">2.0.2.</span> <span class="nav-text">dbo.TKT_Session_Trans</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Damage"><span class="nav-number">2.0.3.</span> <span class="nav-text">Damage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pending-Validation"><span class="nav-number">2.0.4.</span> <span class="nav-text">Pending Validation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diagnostics"><span class="nav-number">2.0.5.</span> <span class="nav-text">Diagnostics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分票-Seperate-Ticket-流程"><span class="nav-number">2.0.6.</span> <span class="nav-text">分票(Seperate Ticket)流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#關班掃票"><span class="nav-number">2.0.7.</span> <span class="nav-text">關班掃票</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Void-With-Handpay"><span class="nav-number">2.0.8.</span> <span class="nav-text">Void With Handpay</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Liability"><span class="nav-number">3.</span> <span class="nav-text">Liability</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Location-SectionName-BankIdx-EGMIdx-e-g-A10202"><span class="nav-number">4.</span> <span class="nav-text">Location = SectionName + BankIdx + EGMIdx e.g., A10202</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Net-win"><span class="nav-number">5.</span> <span class="nav-text">Net win</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#以押分及得分來看"><span class="nav-number">5.0.1.</span> <span class="nav-text">以押分及得分來看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#從金流來看"><span class="nav-number">5.0.2.</span> <span class="nav-text">從金流來看</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#清鈔"><span class="nav-number">6.</span> <span class="nav-text">清鈔</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DB"><span class="nav-number">6.1.</span> <span class="nav-text">DB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CollectionTicketIn"><span class="nav-number">6.1.1.</span> <span class="nav-text">CollectionTicketIn</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Accounting"><span class="nav-number">7.</span> <span class="nav-text">Accounting</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DB-1"><span class="nav-number">7.1.</span> <span class="nav-text">DB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PeriodMeter"><span class="nav-number">7.1.1.</span> <span class="nav-text">PeriodMeter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Period"><span class="nav-number">7.1.2.</span> <span class="nav-text">Period</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重覆票"><span class="nav-number">7.2.</span> <span class="nav-text">重覆票</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accounting-day"><span class="nav-number">7.3.</span> <span class="nav-text">Accounting day</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#擋招擋玩"><span class="nav-number">7.4.</span> <span class="nav-text">擋招擋玩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DB-instance"><span class="nav-number">7.5.</span> <span class="nav-text">DB instance</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VaultSession"><span class="nav-number">8.</span> <span class="nav-text">VaultSession</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#該vault-session的collection-value-加總"><span class="nav-number">8.1.</span> <span class="nav-text">該vault session的collection value 加總</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-system用的-不必理會-自動帶db的default"><span class="nav-number">8.2.</span> <span class="nav-text">Table system用的, 不必理會(自動帶db的default)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#點數換現金"><span class="nav-number">8.3.</span> <span class="nav-text">點數換現金</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loyalty-credit"><span class="nav-number">8.4.</span> <span class="nav-text">loyalty credit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bonus"><span class="nav-number">8.5.</span> <span class="nav-text">Bonus</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#limit"><span class="nav-number">8.5.0.1.</span> <span class="nav-text">limit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#兌換禮物"><span class="nav-number">8.5.0.2.</span> <span class="nav-text">兌換禮物</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ApServer-AccountingDay"><span class="nav-number">8.6.</span> <span class="nav-text">ApServer AccountingDay</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cashier關班金額"><span class="nav-number">9.</span> <span class="nav-text">Cashier關班金額</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cashless"><span class="nav-number">10.</span> <span class="nav-text">Cashless</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#msMember"><span class="nav-number">11.</span> <span class="nav-text">msMember</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#msPlayerBetLog"><span class="nav-number">12.</span> <span class="nav-text">msPlayerBetLog</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#msMemberAcc"><span class="nav-number">13.</span> <span class="nav-text">msMemberAcc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#msPlayerSession"><span class="nav-number">14.</span> <span class="nav-text">msPlayerSession</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Operator"><span class="nav-number">15.</span> <span class="nav-text">Operator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GroupTradeLimit"><span class="nav-number">16.</span> <span class="nav-text">GroupTradeLimit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jackpot"><span class="nav-number">17.</span> <span class="nav-text">Jackpot</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whiteFur</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
