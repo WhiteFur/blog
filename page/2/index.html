@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -238,6 +238,116 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/02/19/sp-table-argument/" itemprop="url">
+                  Use Table-Valued Parameters
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-02-19T15:31:49+08:00" content="2016-02-19">
+              2016-02-19
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>由於SQL沒有Array的型態可用<br>那要傳入多筆資料做為store procedure的參數時該怎麼做呢？<br>我們可以把欲傳入store procedure的資料insert到一個table variable<br>執行store procedure時再把該table variable當做參數傳入<br>詳細做法如下：</p>
+<ol>
+<li><p>自定table type</p>
+ <img src="/blog/2016/02/19/sp-table-argument/create_type.png" alt="image" title="image">
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> dbo.WhiteFurTableType <span class="keyword">AS</span> <span class="keyword">TABLE</span></span><br><span class="line">( </span><br><span class="line"> CategoryID <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> , </span><br><span class="line"> CategoryName <span class="keyword">nvarchar</span>(<span class="number">50</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>store procedure的parameter便可以使用此type(規定必須設為READONLY)</p>
+<blockquote>
+<p>Table-valued parameters must be passed as input READONLY parameters to Transact-SQL routines. You cannot perform DML operations such as UPDATE, DELETE, or INSERT on a table-valued parameter in the body of a routine.</p>
+</blockquote>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> dbo.Process_White_Fur</span><br><span class="line">@_whiteFur dbo.WhiteFurTableType READONLY</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  blablabla.....</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>execute時就能傳入一個該type的參數</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> @whitefurLin dbo.WhiteFurTableType</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> @whitefurLin <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, N<span class="string">'Taiwan'</span>), (<span class="number">2</span>, N<span class="string">'Taipei'</span>), (<span class="number">3</span>, N<span class="string">'Taichung'</span>)</span><br><span class="line"></span><br><span class="line">EXEC [dbo].[Process_White_Fur] </span><br><span class="line">@_whiteFur = @whitefurLin</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>欲瞭解更多細節可以參考MSDN的說明<br><a href="https://msdn.microsoft.com/en-us/library/bb510489.aspx" target="_blank" rel="external">https://msdn.microsoft.com/en-us/library/bb510489.aspx</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/01/29/VirtualBox-add-disk/" itemprop="url">
                   VirtualBox_add_disk
                 </a>
@@ -251,7 +361,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-01-29T22:27:11+08:00" content="2016-01-29">
               2016-01-29
             </time>
@@ -352,7 +462,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-01-29T18:17:22+08:00" content="2016-01-29">
               2016-01-29
             </time>
@@ -463,7 +573,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2015-12-18T13:47:01+08:00" content="2015-12-18">
               2015-12-18
             </time>
@@ -582,7 +692,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2015-11-17T15:11:25+08:00" content="2015-11-17">
               2015-11-17
             </time>
@@ -821,127 +931,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2015/11/06/chakram-usage/" itemprop="url">
-                  Using Chakram to test your Restful API
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posté le</span>
-            <time itemprop="dateCreated" datetime="2015-11-06T13:57:59+08:00" content="2015-11-06">
-              2015-11-06
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="https://github.com/dareid/chakram/" target="_blank" rel="external">Chakram</a>是一套針對Restful API的testing framewok<br>其建構在<a href="https://mochajs.org" target="_blank" rel="external">Mocha</a>, <a href="http://chaijs.com" target="_blank" rel="external">Chai</a>之上<br>它利用<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects" target="_blank" rel="external">ECMAScript 6</a>的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="external">Promise</a>讓programmer在測試非同步的行為時，能夠寫出更易懂的測試程式碼</p>
-<p>注意：</p>
-<ol>
-<li>本文預設讀者已經瞭解Mocha的基本運作流程，所以不針對Mocha做介紹</li>
-<li>本文僅粗略的介紹大概的寫法，請搭配Chakram的文件</li>
-</ol>
-<h2 id="以下為一測試post的例子"><a href="#以下為一測試post的例子" class="headerlink" title="以下為一測試post的例子"></a>以下為一測試post的例子</h2><ul>
-<li>post url: <a href="http://localhost:8080/ApServer/Slot/CheckCashierActiveSession" target="_blank" rel="external">http://localhost:8080/ApServer/Slot/CheckCashierActiveSession</a></li>
-<li>arguments: workstationID: 20008, categoryIdx:11</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> chakram = <span class="built_in">require</span>(<span class="string">'chakram'</span>),</span><br><span class="line">      expect = chakram.expect;</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'test'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  it(<span class="string">"Test CheckCashier"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> response = chakram.post(<span class="string">"/CheckCashier"</span>, <span class="literal">null</span>,</span><br><span class="line">                                &#123;baseUrl:<span class="string">"http://localhost:8080/Server/Slot"</span>, </span><br><span class="line">                                  form:&#123;wk: <span class="number">20008</span>,</span><br><span class="line">                                  category:<span class="number">11</span></span><br><span class="line">                                  &#125;&#125;);</span><br><span class="line"></span><br><span class="line">    expect(response).to.have.status(<span class="number">200</span>);</span><br><span class="line">    expect(response).to.have.property(<span class="string">'body'</span>);</span><br><span class="line">    expect(response).to.have.deep.property(<span class="string">'body.status'</span>, <span class="number">1</span>);</span><br><span class="line">    expect(response).to.have.deep.property(<span class="string">'body.session.Status'</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> chakram.wait();</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<ol>
-<li>checkram.post returns a Promise object, which will resolve to a ChakramResponse object</li>
-<li>用<a href="http://chaijs.com/guide/styles/#expect" target="_blank" rel="external">Expect</a>對上述promise object做測試</li>
-<li>chakram.wait() 會return一個promise, 該promise會等待與其同一層的所有chakram expectations都被fufilled時, 才會跟著fullfill</li>
-<li>Mocha的it如果return一個promise, 則Mocha會等該promise被fulfill, 才會完成此it block的測試</li>
-</ol>
-<h2 id="再來看看稍微複雜一點的例子"><a href="#再來看看稍微複雜一點的例子" class="headerlink" title="再來看看稍微複雜一點的例子"></a>再來看看稍微複雜一點的例子</h2><p>當我們必須使用response的值來做為另一支api的參數時，可利用promise的特性，用.then來串接下去</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">"test a sequence of Restful APIs"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> chakram.post(<span class="string">"/Purchase"</span>, <span class="literal">null</span>,</span><br><span class="line">                      &#123;baseUrl:<span class="string">"http://localhost:8080/Server/Slot"</span>, </span><br><span class="line">                        form:&#123;workstationID: <span class="number">20008</span>,</span><br><span class="line">                          opID: <span class="number">2</span>,</span><br><span class="line">                          seq:<span class="number">1</span>,</span><br><span class="line">                          amt:<span class="number">5000</span>,</span><br><span class="line">                          category:<span class="number">11</span>&#125;&#125;)</span><br><span class="line">                          .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">                            expect(res).to.have.deep.property(<span class="string">'body.status'</span>, <span class="number">1</span>);</span><br><span class="line">                            expect(res).to.have.deep.property(<span class="string">'body.tkt.amt'</span>, <span class="number">5000</span>);</span><br><span class="line"></span><br><span class="line">                            <span class="comment">//separate the ticket with 5000 to 1200, 1300, and 2500</span></span><br><span class="line">                            <span class="keyword">return</span> chakram.post(<span class="string">"/Separate"</span>, <span class="literal">null</span>,</span><br><span class="line">                                                &#123;baseUrl:<span class="string">"http://localhost:8080/Server/Slot"</span>, </span><br><span class="line">                                                  form:&#123;workstationID: <span class="number">20008</span>,</span><br><span class="line">                                                    opID: <span class="number">2</span>,</span><br><span class="line">                                                    seq:<span class="number">1</span>,</span><br><span class="line">                                                    dupIdx:<span class="number">0</span>,</span><br><span class="line">                                                    valCode:res.body.tkt.Val_Code,</span><br><span class="line">                                                    amt:[<span class="number">1200</span>, <span class="number">1300</span>, <span class="number">2500</span>]&#125;&#125;);</span><br><span class="line">                          &#125;)</span><br><span class="line">                          .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">                            expect(res).to.have.deep.property(<span class="string">'body.status'</span>, <span class="number">1</span>);</span><br><span class="line">                            <span class="keyword">var</span> tkts = _.sortBy(res.body.tkts, <span class="function"><span class="keyword">function</span>(<span class="params">tkt</span>)</span>&#123;</span><br><span class="line">                              <span class="keyword">return</span> tkt[<span class="string">'amt'</span>];</span><br><span class="line">                            &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                            <span class="comment">//validate the ticket with 1200</span></span><br><span class="line">                            <span class="keyword">var</span> response = chakram.post(<span class="string">"/Validate"</span>, <span class="literal">null</span>,</span><br><span class="line">                                                &#123;baseUrl:<span class="string">"http://localhost:8080/Server/Slot"</span>, </span><br><span class="line">                                                  form:&#123;workstationID: <span class="number">20008</span>,</span><br><span class="line">                                                    opID: <span class="number">2</span>,</span><br><span class="line">                                                    seq:<span class="number">1</span>,</span><br><span class="line">                                                    dupIdx:<span class="number">0</span>,</span><br><span class="line">                                                    valCode:tkts[<span class="number">0</span>].ValCode,</span><br><span class="line">                                                    supervisorID:<span class="number">0</span>&#125;&#125;);</span><br><span class="line">                            expect(response).to.have.deep.property(<span class="string">'body.status'</span>, <span class="number">1</span>);</span><br><span class="line">                            expect(response).to.have.deep.property(<span class="string">'body.tkt.Type'</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">                            <span class="keyword">return</span> chakram.wait();</span><br><span class="line">                          &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="測試寫完後，在terminal下mocha指令，開始跑測試"><a href="#測試寫完後，在terminal下mocha指令，開始跑測試" class="headerlink" title="測試寫完後，在terminal下mocha指令，開始跑測試"></a>測試寫完後，在terminal下mocha指令，開始跑測試</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whitefurlin$ mocha</span><br></pre></td></tr></table></figure>
-<p>mocha預設會去執行./test/ 資料夾下的所有js file，也可以指定要跑的測試檔<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whitefurlin$ mocha ./<span class="built_in">test</span>/chakram_tutorial.js</span><br></pre></td></tr></table></figure></p>
-<p>若測試成功，會出現如下畫面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Chakram tutorial:</span><br><span class="line">    ✓ Test CheckCashier</span><br><span class="line">    ✓ <span class="built_in">test</span> a sequence of Restful APIs</span><br></pre></td></tr></table></figure></p>
-<p>若其中有某些測試沒有通過，會出現如下畫面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Chakram tutorial:</span><br><span class="line">    1) should be an active session</span><br><span class="line">    ✓ <span class="built_in">test</span> a sequence of Restful APIs</span><br><span class="line">1 passing </span><br><span class="line">  1 failing</span><br><span class="line"></span><br><span class="line">  1) CheckCashier:  should be an active session:</span><br><span class="line">     AssertionError: expected &#123; Object (error, response, ...) &#125; to have a deep property <span class="string">'body.status'</span> of 1, but got 0</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -982,8 +976,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -992,8 +986,8 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">15</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1037,11 +1031,11 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

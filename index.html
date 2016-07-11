@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -238,6 +238,127 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/07/11/Generator-function/" itemprop="url">
+                  Generator-function
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-07-11T17:40:09+08:00" content="2016-07-11">
+              2016-07-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>語法: function* name(…){…}</li>
+<li>Generator Function call時，不會馬上執行，而是return一個iterator object</li>
+<li>iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止</li>
+<li>Once paused on a yield expression, the generator’s code execution remains paused until the generator’s next() method is called. </li>
+<li>iterator的next() call <ul>
+<li>returns an object like {value: VALUE_FROM_YIELD, done: IS_THIS_FINISHED}</li>
+<li>done: indicates whether the generator has yielded its last value</li>
+</ul>
+</li>
+<li>yield<ul>
+<li>可以看成是generator function的return keyword</li>
+<li>用法: [rv] = yield [expression];</li>
+<li>expression<br>  Defines the value to return from the generator function via the iterator protocol. If omitted, undefined is returned instead.</li>
+<li>rv<br>  Returns the optional value passed to the generator’s next() method to resume its execution.</li>
+</ul>
+</li>
+<li>next()會resume the generator function</li>
+<li>next(arg) 如果有傳參數，則yield statement where execution was paused會被換成該arg<br>If an optional value is passed to the generator’s next() method, that value becomes the value returned by the generator’s current yield operation.</li>
+<li>Each time the generator’s next() method is called, the generator resumes execution and runs until it reaches one of the following:<ul>
+<li>A yield, which causes the generator to once again pause and return the generator’s new value. The next time next() is called, execution resumes with the statement immediately after the yield.</li>
+<li>throw is used to throw an exception from the generator. This halts execution of the generator entirely, and execution resumes in the caller as is normally the case when an exception is thrown.</li>
+<li>The end of the generator function is reached; in this case, execution of the generator ends and an IteratorResult is returned to the caller in which the value is undefined and done is true.</li>
+<li>A return statement is reached. In this case, execution of the generator ends and an IteratorResult is returned to the caller in which the value is the value specified by the return statement and done is true.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> stop = <span class="keyword">yield</span> <span class="string">'woo'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(stop, <span class="string">'inside foo'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> G = foo();</span><br><span class="line"><span class="built_in">console</span>.log(G.next());</span><br><span class="line"><span class="built_in">console</span>.log(G.next(<span class="string">'bar'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/* result:</span><br><span class="line">&#123; value: 'woo', done: false &#125;</span><br><span class="line">bar inside foo</span><br><span class="line">&#123; value: undefined, done: true &#125;</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/06/27/Hexo-Tutorial/" itemprop="url">
                   Hexo-Tutorial
                 </a>
@@ -251,7 +372,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-27T14:08:16+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -350,7 +471,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-27T10:47:06+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -617,7 +738,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-01T11:39:55+08:00" content="2016-06-01">
               2016-06-01
             </time>
@@ -711,7 +832,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-02-23T10:11:12+08:00" content="2016-02-23">
               2016-02-23
             </time>
@@ -810,121 +931,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/02/19/sp-table-argument/" itemprop="url">
-                  Use Table-Valued Parameters
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posté le</span>
-            <time itemprop="dateCreated" datetime="2016-02-19T15:31:49+08:00" content="2016-02-19">
-              2016-02-19
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>由於SQL沒有Array的型態可用<br>那要傳入多筆資料做為store procedure的參數時該怎麼做呢？<br>我們可以把欲傳入store procedure的資料insert到一個table variable<br>執行store procedure時再把該table variable當做參數傳入<br>詳細做法如下：</p>
-<ol>
-<li><p>自定table type</p>
- <img src="/blog/2016/02/19/sp-table-argument/create_type.png" alt="image" title="image">
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> dbo.WhiteFurTableType <span class="keyword">AS</span> <span class="keyword">TABLE</span></span><br><span class="line">( </span><br><span class="line"> CategoryID <span class="built_in">int</span> PRIMARY <span class="keyword">KEY</span> , </span><br><span class="line"> CategoryName <span class="keyword">nvarchar</span>(<span class="number">50</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>store procedure的parameter便可以使用此type(規定必須設為READONLY)</p>
-<blockquote>
-<p>Table-valued parameters must be passed as input READONLY parameters to Transact-SQL routines. You cannot perform DML operations such as UPDATE, DELETE, or INSERT on a table-valued parameter in the body of a routine.</p>
-</blockquote>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> dbo.Process_White_Fur</span><br><span class="line">@_whiteFur dbo.WhiteFurTableType READONLY</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  blablabla.....</span><br><span class="line"><span class="keyword">END</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>execute時就能傳入一個該type的參數</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> @whitefurLin dbo.WhiteFurTableType</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> @whitefurLin <span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, N<span class="string">'Taiwan'</span>), (<span class="number">2</span>, N<span class="string">'Taipei'</span>), (<span class="number">3</span>, N<span class="string">'Taichung'</span>)</span><br><span class="line"></span><br><span class="line">EXEC [dbo].[Process_White_Fur] </span><br><span class="line">@_whiteFur = @whitefurLin</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>欲瞭解更多細節可以參考MSDN的說明<br><a href="https://msdn.microsoft.com/en-us/library/bb510489.aspx" target="_blank" rel="external">https://msdn.microsoft.com/en-us/library/bb510489.aspx</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -965,8 +976,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -975,8 +986,8 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">15</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -1020,11 +1031,11 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

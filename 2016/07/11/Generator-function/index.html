@@ -68,7 +68,7 @@
 <link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Virtualbox,Disk," />
+  <meta name="keywords" content="node,ES6,generator," />
 
 
 
@@ -84,25 +84,25 @@
 
 
 
-<meta name="description">
+<meta name="description" content="語法: function* name(…){…}
+Generator Function call時，不會馬上執行，而是return一個iterator object
+iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止
+Once paused on a yield expression, the generator">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VirtualBox_add_disk">
-<meta property="og:url" content="http://whitefur.github.io/blog/2016/01/29/VirtualBox-add-disk/index.html">
+<meta property="og:title" content="Generator-function">
+<meta property="og:url" content="http://whitefur.github.io/blog/2016/07/11/Generator-function/index.html">
 <meta property="og:site_name" content="whiteFur">
-<meta property="og:description">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/add_disk_00.png">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/add_disk_01.png">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/add_disk_02.png">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/add_disk_03.png">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/add_disk_04.png">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/add_disk_05.png">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/right_click.png">
-<meta property="og:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/disk_mamagement.png">
-<meta property="og:updated_time" content="2016-06-27T03:37:40.000Z">
+<meta property="og:description" content="語法: function* name(…){…}
+Generator Function call時，不會馬上執行，而是return一個iterator object
+iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止
+Once paused on a yield expression, the generator">
+<meta property="og:updated_time" content="2016-07-11T10:35:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VirtualBox_add_disk">
-<meta name="twitter:description">
-<meta name="twitter:image" content="http://whitefur.github.io/blog/blog/2016/01/29/VirtualBox-add-disk/add_disk_00.png">
+<meta name="twitter:title" content="Generator-function">
+<meta name="twitter:description" content="語法: function* name(…){…}
+Generator Function call時，不會馬上執行，而是return一個iterator object
+iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止
+Once paused on a yield expression, the generator">
 
 
 
@@ -123,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://whitefur.github.io/blog/2016/01/29/VirtualBox-add-disk/"/>
+  <link rel="canonical" href="http://whitefur.github.io/blog/2016/07/11/Generator-function/"/>
 
-  <title> VirtualBox_add_disk | whiteFur </title>
+  <title> Generator-function | whiteFur </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -245,7 +245,7 @@
             
             
               
-                VirtualBox_add_disk
+                Generator-function
               
             
           </h1>
@@ -257,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-01-29T22:27:11+08:00" content="2016-01-29">
-              2016-01-29
+            <time itemprop="dateCreated" datetime="2016-07-11T17:40:09+08:00" content="2016-07-11">
+              2016-07-11
             </time>
           </span>
 
@@ -285,14 +285,34 @@
       
 
       
-        <img src="/blog/2016/01/29/VirtualBox-add-disk/add_disk_00.png" alt="image" title="image">
-<img src="/blog/2016/01/29/VirtualBox-add-disk/add_disk_01.png" alt="image" title="image">
-<img src="/blog/2016/01/29/VirtualBox-add-disk/add_disk_02.png" alt="image" title="image">
-<img src="/blog/2016/01/29/VirtualBox-add-disk/add_disk_03.png" alt="image" title="image">
-<img src="/blog/2016/01/29/VirtualBox-add-disk/add_disk_04.png" alt="image" title="image">
-<img src="/blog/2016/01/29/VirtualBox-add-disk/add_disk_05.png" alt="image" title="image">
-<img src="/blog/2016/01/29/VirtualBox-add-disk/right_click.png" alt="image" title="image">
-<img src="/blog/2016/01/29/VirtualBox-add-disk/disk_mamagement.png" alt="image" title="image">
+        <ul>
+<li>語法: function* name(…){…}</li>
+<li>Generator Function call時，不會馬上執行，而是return一個iterator object</li>
+<li>iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止</li>
+<li>Once paused on a yield expression, the generator’s code execution remains paused until the generator’s next() method is called. </li>
+<li>iterator的next() call <ul>
+<li>returns an object like {value: VALUE_FROM_YIELD, done: IS_THIS_FINISHED}</li>
+<li>done: indicates whether the generator has yielded its last value</li>
+</ul>
+</li>
+<li>yield<ul>
+<li>可以看成是generator function的return keyword</li>
+<li>用法: [rv] = yield [expression];</li>
+<li>expression<br>  Defines the value to return from the generator function via the iterator protocol. If omitted, undefined is returned instead.</li>
+<li>rv<br>  Returns the optional value passed to the generator’s next() method to resume its execution.</li>
+</ul>
+</li>
+<li>next()會resume the generator function</li>
+<li>next(arg) 如果有傳參數，則yield statement where execution was paused會被換成該arg<br>If an optional value is passed to the generator’s next() method, that value becomes the value returned by the generator’s current yield operation.</li>
+<li>Each time the generator’s next() method is called, the generator resumes execution and runs until it reaches one of the following:<ul>
+<li>A yield, which causes the generator to once again pause and return the generator’s new value. The next time next() is called, execution resumes with the statement immediately after the yield.</li>
+<li>throw is used to throw an exception from the generator. This halts execution of the generator entirely, and execution resumes in the caller as is normally the case when an exception is thrown.</li>
+<li>The end of the generator function is reached; in this case, execution of the generator ends and an IteratorResult is returned to the caller in which the value is undefined and done is true.</li>
+<li>A return statement is reached. In this case, execution of the generator ends and an IteratorResult is returned to the caller in which the value is the value specified by the return statement and done is true.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> stop = <span class="keyword">yield</span> <span class="string">'woo'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(stop, <span class="string">'inside foo'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> G = foo();</span><br><span class="line"><span class="built_in">console</span>.log(G.next());</span><br><span class="line"><span class="built_in">console</span>.log(G.next(<span class="string">'bar'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/* result:</span><br><span class="line">&#123; value: 'woo', done: false &#125;</span><br><span class="line">bar inside foo</span><br><span class="line">&#123; value: undefined, done: true &#125;</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -314,9 +334,11 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/Virtualbox/" rel="tag">#Virtualbox</a>
+            <a href="/blog/tags/node/" rel="tag">#node</a>
           
-            <a href="/blog/tags/Disk/" rel="tag">#Disk</a>
+            <a href="/blog/tags/ES6/" rel="tag">#ES6</a>
+          
+            <a href="/blog/tags/generator/" rel="tag">#generator</a>
           
         </div>
       
@@ -325,17 +347,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2016/01/29/virtualbox/" rel="next" title="virtualbox全螢幕&共享資料夾">
-                <i class="fa fa-chevron-left"></i> virtualbox全螢幕&共享資料夾
+              <a href="/blog/2016/06/27/Hexo-Tutorial/" rel="next" title="Hexo-Tutorial">
+                <i class="fa fa-chevron-left"></i> Hexo-Tutorial
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2016/02/19/sp-table-argument/" rel="prev" title="Use Table-Valued Parameters">
-                Use Table-Valued Parameters <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
