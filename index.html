@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -238,6 +238,113 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/08/22/Git-case-sensitivity/" itemprop="url">
+                  Git-case-sensitivity
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T13:22:27+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="checkout時大小寫不影響"><a href="#checkout時大小寫不影響" class="headerlink" title="checkout時大小寫不影響"></a>checkout時大小寫不影響</h1><p>e.g., 目前remote repo有兩個branch<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote -r</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">origin/feature/TM-1</span><br><span class="line">origin/master</span><br></pre></td></tr></table></figure>
+<p>checkout時故意把TM打成Tm<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout feature/Tm-1</span><br></pre></td></tr></table></figure></p>
+<p>仍然可以正常checkout<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Branch feature/Tm-1 set up to track remote branch feature/Tm-1 from origin.</span><br><span class="line">Switched to a new branch &apos;feature/Tm-1&apos;</span><br></pre></td></tr></table></figure></p>
+<h1 id="push時大小寫則會影響"><a href="#push時大小寫則會影響" class="headerlink" title="push時大小寫則會影響"></a>push時大小寫則會影響</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -vv</span><br></pre></td></tr></table></figure>
+<p>我們會發現它track的remote branch的name大小寫也會跟local branch的一樣</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* feature/Tm-1 981f420 [origin/feature/Tm-1] some commit msg</span><br><span class="line">  master       f1607cf [origin/master: behind 2] some commit msg</span><br></pre></td></tr></table></figure>
+<p>做了一些修改, 再push<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ touch test.test</span><br><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">"test for case sensitivity"</span></span><br><span class="line">$ git push origin feature/Tm-1</span><br></pre></td></tr></table></figure></p>
+<p>會發生error<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">remote: error: cannot lock ref <span class="string">'refs/heads/feature/Tm-1'</span>: ref refs/heads/feature/Tm-1 is at 981f420e598c87<span class="built_in">cd</span>4eb5cb3b259fbcad33b1d2ac but expected 0000000000000000000000000000000000000000</span><br><span class="line">To http://whitefurlin@bitbucket.gamasys.com.tw:7990/scm/tm/member-web.git</span><br><span class="line"> ! [remote rejected] feature/Tm-1 -&gt; feature/Tm-1 (failed to update ref)</span><br><span class="line">error: failed to push some refs to <span class="string">'http://whitefurlin@bitbucket.gamasys.com.tw:7990/scm/tm/member-web.git'</span></span><br></pre></td></tr></table></figure></p>
+<p>因為git push origin feature/Tm-1的意思是把local的feature/Tm-1給push上去，如果沒有指定remote branch，git會認為是要push到remote/feature/Tm-1，但是remote並沒有feature/Tm-1，而是feature/TM-1</p>
+<p>現在我們改成原來的大寫<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin feature/TM-1</span><br></pre></td></tr></table></figure></p>
+<p>結果找不到這個branch，因為local branch name為feature/Tm-1<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fatal: feature/TM-1 cannot be resolved to branch.</span><br></pre></td></tr></table></figure></p>
+<p>必需指定要push到哪個remote branch才會成功<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin feature/Tm-1:feature/TM-1</span><br></pre></td></tr></table></figure></p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>大小寫都一致就不會發生以上情形</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/07/11/Generator-function/" itemprop="url">
                   Generator-function
                 </a>
@@ -251,7 +358,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-11T17:40:09+08:00" content="2016-07-11">
               2016-07-11
             </time>
@@ -282,7 +389,11 @@
       
         
           
-            <ul>
+            <p>[初探 ES6（3）Generator] (<a href="http://www.codedata.com.tw/javascript/es6-3-generator/" target="_blank" rel="external">http://www.codedata.com.tw/javascript/es6-3-generator/</a>)</p>
+<blockquote>
+<p>ES6 新增的諸多功能中，Generator受到許多矚目。什麼是Generator呢？簡單地說，他有點像是為函數增加額外的進入點，函數在執行到yield時會暫停執行，返回到呼叫函數的程式中繼續執行，直到Generator物件的next方法再次被呼叫，讓程式回到函數中。</p>
+</blockquote>
+<ul>
 <li>語法: function* name(…){…}</li>
 <li>Generator Function call時，不會馬上執行，而是return一個iterator object</li>
 <li>iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止</li>
@@ -372,7 +483,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-27T14:08:16+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -471,7 +582,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-27T10:47:06+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -738,7 +849,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-01T11:39:55+08:00" content="2016-06-01">
               2016-06-01
             </time>
@@ -770,139 +881,6 @@
         
           
             <p><a href="https://draculatheme.com/vim/" target="_blank" rel="external">draculatheme</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/02/23/file-encoding/" itemprop="url">
-                  file_encoding
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-02-23T10:11:12+08:00" content="2016-02-23">
-              2016-02-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>如何把file轉成我們想要的encoding</p>
-<p>分為兩個部分</p>
-<ul>
-<li>Determine the encoding</li>
-<li>Convert to another encoding</li>
-</ul>
-<h3 id="Determine-the-encoding"><a href="#Determine-the-encoding" class="headerlink" title="Determine the encoding"></a>Determine the encoding</h3><p>有兩種做法</p>
-<ol>
-<li><p>使用Unix的file command</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ file app.js</span><br><span class="line">app.js: UTF-8 Unicode C++ program text</span><br></pre></td></tr></table></figure>
-<p> 不過有時候會猜不準<br> e.g. app.js明明是utf-8，但是因為都是英數字元，所以「file」就以為app.js是ASCII</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ file app.js</span><br><span class="line">app.js: ASCII C++ program text</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用vim的fileencdoing</p>
- <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> fileencdoing</span><br></pre></td></tr></table></figure>
-<p> 得知該檔的encoding</p>
- <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fileencdoing=utf-<span class="number">16</span><span class="keyword">le</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="Convert-to-another-encoding"><a href="#Convert-to-another-encoding" class="headerlink" title="Convert to another encoding"></a>Convert to another encoding</h3><p>有兩種做法</p>
-<ol>
-<li><p>使用Unix的iconv</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iconv <span class="_">-f</span> UTF-16LE -t UTF8 input.sql &gt; output.sql</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>-f encoding, –from-code=encoding<br> Specifies the encoding of the input.</p>
-<p>-t encoding, –to-code=encoding<br> Specifies the encoding of the output.</p>
-</blockquote>
-<p> list the supported encodings</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iconv <span class="_">-l</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用vim指定編碼再存檔</p>
- <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> fileencoding=utf8</span><br><span class="line">:<span class="keyword">w</span> myfilename</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>事實上，<br>我們無從得知file encoding為何，<br>VIM也只是根據檔案內容去猜它的encoding而已，<br>除非該檔有寫bom明確指出該檔案的encoding</p>
-<blockquote>
-<p>There really isn’t a common way to determine the encoding of a plaintext file, as that information isn’t saved in the file itself - except UTF-8 Files where you’ve got a so called BOM which indicates the Encoding. This is why xml and html files have charset metatags.</p>
-<p>Note that files’ encoding is not explicitly stated anywhere in a file. Thus, VIM and other applications must guess at the encoding.</p>
-</blockquote>
-<p>Reference:<br><a href="http://superuser.com/questions/28779/how-do-i-find-the-encoding-of-the-current-buffer-in-vim" target="_blank" rel="external">http://superuser.com/questions/28779/how-do-i-find-the-encoding-of-the-current-buffer-in-vim</a><br><a href="http://www.phpini.com/php/linux-detect-convert-charset" target="_blank" rel="external">http://www.phpini.com/php/linux-detect-convert-charset</a></p>
 
           
         
@@ -976,8 +954,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">11</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -986,8 +964,8 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1031,7 +1009,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">

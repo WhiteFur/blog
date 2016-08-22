@@ -84,25 +84,22 @@
 
 
 
-<meta name="description" content="語法: function* name(…){…}
-Generator Function call時，不會馬上執行，而是return一個iterator object
-iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止
-Once paused on a yield expression, the generator">
+<meta name="description" content="[初探 ES6（3）Generator] (http://www.codedata.com.tw/javascript/es6-3-generator/)
+
+ES6 新增的諸多功能中，Generator受到許多矚目。什麼是Generator呢？簡單地說，他有點像是為函數增加額外的進入點，函數在執行到yield時會暫停執行，返回到呼叫函數的程式中繼續執行，直到Generator物件的next方法再次">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Generator-function">
 <meta property="og:url" content="http://whitefur.github.io/blog/2016/07/11/Generator-function/index.html">
 <meta property="og:site_name" content="whiteFur">
-<meta property="og:description" content="語法: function* name(…){…}
-Generator Function call時，不會馬上執行，而是return一個iterator object
-iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止
-Once paused on a yield expression, the generator">
-<meta property="og:updated_time" content="2016-07-11T10:35:25.000Z">
+<meta property="og:description" content="[初探 ES6（3）Generator] (http://www.codedata.com.tw/javascript/es6-3-generator/)
+
+ES6 新增的諸多功能中，Generator受到許多矚目。什麼是Generator呢？簡單地說，他有點像是為函數增加額外的進入點，函數在執行到yield時會暫停執行，返回到呼叫函數的程式中繼續執行，直到Generator物件的next方法再次">
+<meta property="og:updated_time" content="2016-07-11T11:34:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Generator-function">
-<meta name="twitter:description" content="語法: function* name(…){…}
-Generator Function call時，不會馬上執行，而是return一個iterator object
-iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止
-Once paused on a yield expression, the generator">
+<meta name="twitter:description" content="[初探 ES6（3）Generator] (http://www.codedata.com.tw/javascript/es6-3-generator/)
+
+ES6 新增的諸多功能中，Generator受到許多矚目。什麼是Generator呢？簡單地說，他有點像是為函數增加額外的進入點，函數在執行到yield時會暫停執行，返回到呼叫函數的程式中繼續執行，直到Generator物件的next方法再次">
 
 
 
@@ -183,7 +180,7 @@ Once paused on a yield expression, the generator">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -193,7 +190,7 @@ Once paused on a yield expression, the generator">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -256,7 +253,7 @@ Once paused on a yield expression, the generator">
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-11T17:40:09+08:00" content="2016-07-11">
               2016-07-11
             </time>
@@ -285,7 +282,11 @@ Once paused on a yield expression, the generator">
       
 
       
-        <ul>
+        <p>[初探 ES6（3）Generator] (<a href="http://www.codedata.com.tw/javascript/es6-3-generator/" target="_blank" rel="external">http://www.codedata.com.tw/javascript/es6-3-generator/</a>)</p>
+<blockquote>
+<p>ES6 新增的諸多功能中，Generator受到許多矚目。什麼是Generator呢？簡單地說，他有點像是為函數增加額外的進入點，函數在執行到yield時會暫停執行，返回到呼叫函數的程式中繼續執行，直到Generator物件的next方法再次被呼叫，讓程式回到函數中。</p>
+</blockquote>
+<ul>
 <li>語法: function* name(…){…}</li>
 <li>Generator Function call時，不會馬上執行，而是return一個iterator object</li>
 <li>iterator的next() method被呼叫時，該generator function才會真的被執行，但是只執行到yield為止</li>
@@ -355,6 +356,10 @@ Once paused on a yield expression, the generator">
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/blog/2016/08/22/Git-case-sensitivity/" rel="prev" title="Git-case-sensitivity">
+                Git-case-sensitivity <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -402,10 +407,10 @@ Once paused on a yield expression, the generator">
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -421,8 +426,8 @@ Once paused on a yield expression, the generator">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">11</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -431,8 +436,8 @@ Once paused on a yield expression, the generator">
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -460,7 +465,7 @@ Once paused on a yield expression, the generator">
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
             
           </div>
         </section>
@@ -487,7 +492,7 @@ Once paused on a yield expression, the generator">
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
