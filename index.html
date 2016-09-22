@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -251,7 +251,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T14:13:52+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -284,8 +284,10 @@
           
             <p>修改最近一個commit:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
 <p>但如果要修改多個commit則可利用rebase -i<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase -i 0b4cb1e</span><br></pre></td></tr></table></figure></p>
-<p>表示從0b4cb1e這個commit以後的commit都逐一rebase</p>
-<p>此時就會回到0b4cb1e, 可執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pick f7f3f6d changed my name a bit</span><br><span class="line">pick 310154e updated README formatting and added blame</span><br><span class="line">pick a5f4a0d added cat-file</span><br></pre></td></tr></table></figure>
+<p>表示從f7f3f6d這個commit以後的commit都逐一rebase<br>把欲修改的commit的pick改成edit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">edit f7f3f6d changed my name a bit</span><br><span class="line">pick 310154e updated README formatting and added blame</span><br><span class="line">edit a5f4a0d added cat-file</span><br></pre></td></tr></table></figure>
+<p>此時就會回到f7f3f6d, 可執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
 <p>修改完後執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --continue</span><br></pre></td></tr></table></figure></p>
 <p>就會再到下一個commit<br>重覆amend &amp; continue即可逐一修改commit</p>
 
@@ -350,7 +352,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-08-22T13:22:27+08:00" content="2016-08-22">
               2016-08-22
             </time>
@@ -457,7 +459,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-07-11T17:40:09+08:00" content="2016-07-11">
               2016-07-11
             </time>
@@ -582,7 +584,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-06-27T14:08:16+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -681,7 +683,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-06-27T10:47:06+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -960,7 +962,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
               <span class="site-state-item-count">13</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -970,7 +972,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
                 <span class="site-state-item-count">22</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1014,11 +1016,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

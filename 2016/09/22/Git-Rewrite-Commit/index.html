@@ -86,29 +86,20 @@
 
 <meta name="description" content="修改最近一個commit:1$ git commit --amend
 但如果要修改多個commit則可利用rebase -i1$ git rebase -i 0b4cb1e
-表示從0b4cb1e這個commit以後的commit都逐一rebase
-此時就會回到0b4cb1e, 可執行1$ git commit --amend
-修改完後執行1$ git commit --continue
-就會再到下">
+123pick f7f3f6d changed my name a bitpick 310154e updated README formatting and added blamepick a5f4a0d added cat">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git-Rewrite-Commit">
 <meta property="og:url" content="http://whitefur.github.io/blog/2016/09/22/Git-Rewrite-Commit/index.html">
 <meta property="og:site_name" content="whiteFur">
 <meta property="og:description" content="修改最近一個commit:1$ git commit --amend
 但如果要修改多個commit則可利用rebase -i1$ git rebase -i 0b4cb1e
-表示從0b4cb1e這個commit以後的commit都逐一rebase
-此時就會回到0b4cb1e, 可執行1$ git commit --amend
-修改完後執行1$ git commit --continue
-就會再到下">
-<meta property="og:updated_time" content="2016-09-22T06:20:10.000Z">
+123pick f7f3f6d changed my name a bitpick 310154e updated README formatting and added blamepick a5f4a0d added cat">
+<meta property="og:updated_time" content="2016-09-22T06:25:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git-Rewrite-Commit">
 <meta name="twitter:description" content="修改最近一個commit:1$ git commit --amend
 但如果要修改多個commit則可利用rebase -i1$ git rebase -i 0b4cb1e
-表示從0b4cb1e這個commit以後的commit都逐一rebase
-此時就會回到0b4cb1e, 可執行1$ git commit --amend
-修改完後執行1$ git commit --continue
-就會再到下">
+123pick f7f3f6d changed my name a bitpick 310154e updated README formatting and added blamepick a5f4a0d added cat">
 
 
 
@@ -189,7 +180,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -199,7 +190,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -262,7 +253,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posté le</span>
             <time itemprop="dateCreated" datetime="2016-09-22T14:13:52+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -293,8 +284,10 @@
       
         <p>修改最近一個commit:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
 <p>但如果要修改多個commit則可利用rebase -i<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase -i 0b4cb1e</span><br></pre></td></tr></table></figure></p>
-<p>表示從0b4cb1e這個commit以後的commit都逐一rebase</p>
-<p>此時就會回到0b4cb1e, 可執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pick f7f3f6d changed my name a bit</span><br><span class="line">pick 310154e updated README formatting and added blame</span><br><span class="line">pick a5f4a0d added cat-file</span><br></pre></td></tr></table></figure>
+<p>表示從f7f3f6d這個commit以後的commit都逐一rebase<br>把欲修改的commit的pick改成edit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">edit f7f3f6d changed my name a bit</span><br><span class="line">pick 310154e updated README formatting and added blame</span><br><span class="line">edit a5f4a0d added cat-file</span><br></pre></td></tr></table></figure>
+<p>此時就會回到f7f3f6d, 可執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
 <p>修改完後執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --continue</span><br></pre></td></tr></table></figure></p>
 <p>就會再到下一個commit<br>重覆amend &amp; continue即可逐一修改commit</p>
 
@@ -376,10 +369,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Inhaltsverzeichnis
+            Table Des Matières
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            Übersicht
+            Ensemble
           </li>
         </ul>
       
@@ -396,7 +389,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
               <span class="site-state-item-count">13</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">articles</span>
             </a>
           </div>
 
@@ -406,7 +399,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
                 <span class="site-state-item-count">22</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -434,7 +427,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <p class="post-toc-empty">This post does not have a Table of Contents</p>
             
           </div>
         </section>
@@ -461,11 +454,11 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
