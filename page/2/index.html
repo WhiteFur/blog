@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -238,6 +238,273 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2016/06/27/Html/" itemprop="url">
+                  Html
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-06-27T10:47:06+08:00" content="2016-06-27">
+              2016-06-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <img src="/blog/2016/06/27/Html/box_model.png" alt="box model" title="box model">
+<ul>
+<li>for layout purposes, every element is composed of:<ul>
+<li>the actual element’s content</li>
+<li>a border around the element</li>
+<li>padding between the content and the border (inside)</li>
+</ul>
+</li>
+<li>a margin between the border and other content (outside)<ul>
+<li>width = content width + L/R padding + L/R border + L/R margin</li>
+<li>height = content height + T/B padding + T/B border + T/B margin</li>
+</ul>
+</li>
+</ul>
+<hr>
+<img src="/blog/2016/06/27/Html/layout3.png" alt="document flow" title="document flow">
+<p>document flow - block and inline element</p>
+<hr>
+<img src="/blog/2016/06/27/Html/float-clipped.png" alt="float: right;" title="float: right;">
+<ul>
+<li>a floating element is removed from normal document flow</li>
+<li>underlying text wraps around it as necessary</li>
+</ul>
+<hr>
+<img src="/blog/2016/06/27/Html/clear.png" alt="p{clear: right}" title="p{clear: right}">
+<p>clear: disallows floating elements from overlapping this element; can be left, right, both, or none (default)</p>
+<hr>
+<h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><img src="/blog/2016/06/27/Html/dom.png" alt="DOM" title="DOM">
+<img src="/blog/2016/06/27/Html/figure_5_dom.png" alt="DOM" title="DOM">
+<ul>
+<li>every element on the page has a corresponding DOM object</li>
+<li>access/modify the attributes of the DOM object with objectName.attributeName</li>
+</ul>
+<h2 id="DOM-object-properties"><a href="#DOM-object-properties" class="headerlink" title="DOM object properties"></a>DOM object properties</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span> <span class="attr">class</span>=<span class="string">"foo bar"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello, <span class="tag">&lt;<span class="name">em</span>&gt;</span>very<span class="tag">&lt;/<span class="name">em</span>&gt;</span> happy to see you!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"icon"</span> <span class="attr">src</span>=<span class="string">"images/borat.jpg"</span> <span class="attr">alt</span>=<span class="string">"Borat"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mainDiv = <span class="built_in">document</span>.getElementById(<span class="string">"main"</span>);</span><br><span class="line"><span class="keyword">var</span> icon    = <span class="built_in">document</span>.getElementById(<span class="string">"icon"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>tagName - element’s HTML tagmain. Div.tagName is “DIV”</li>
+<li>className - CSS classes of element. mainDiv.className is “foo bar”</li>
+<li>innerHTML - content in element. mainDiv.innerHTML is “\n &lt;p&gt;Hello, &lt;em&gt;ve…” </li>
+<li>src - URL target of an image. icon.src is “images/borat.jpg”</li>
+<li>style - lets you set any CSS style property for an element (contains same properties as in CSS, but with camelCasedNames)<br>e.g., backgroundColor, borderLeftWidth, fontFamily<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"clickme"</span>).onclick = changeColor;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeColor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> clickMe = <span class="built_in">document</span>.getElementById(<span class="string">"clickme"</span>);</span><br><span class="line">  clickMe.style.color = <span class="string">"red"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Abuse-of-innerHTML"><a href="#Abuse-of-innerHTML" class="headerlink" title="Abuse of innerHTML"></a>Abuse of innerHTML</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad style!</span></span><br><span class="line"><span class="keyword">var</span> paragraph = <span class="built_in">document</span>.getElementById(<span class="string">"welcome"</span>);</span><br><span class="line">paragraph.innerHTML = <span class="string">"&lt;p&gt;text and &lt;a href="</span>page.html<span class="string">"&gt;link&lt;/a&gt;"</span>;</span><br></pre></td></tr></table></figure>
+<p>we forbid using innerHTML to inject HTML tags; inject plain text only</p>
+<h2 id="Common-DOM-styling-errors"><a href="#Common-DOM-styling-errors" class="headerlink" title="Common DOM styling errors"></a>Common DOM styling errors</h2><ul>
+<li><p>forget to write .style when setting styles</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> clickMe = <span class="built_in">document</span>.getElementById(<span class="string">"clickme"</span>);</span><br><span class="line">clickMe.color = <span class="string">"red"</span>;<span class="comment">//wrong</span></span><br><span class="line">clickMe.style.color = <span class="string">"red"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>style properties are capitalized likeThis, not like-this</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clickMe.style.font-size = <span class="string">"14pt"</span>; <span class="comment">//wrong</span></span><br><span class="line">clickMe.style.fontSize = <span class="string">"14pt"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>style properties must be set as strings, often with units at the end</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clickMe.style.width = <span class="number">200</span>;</span><br><span class="line">clickMe.style.width = <span class="string">"200px"</span>;</span><br><span class="line">clickMe.style.padding = <span class="string">"0.5em"</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>write exactly the value you would have written in the CSS, but in quotes</li>
+</ul>
+</li>
+</ul>
+<h2 id="DOM-properties-for-form-controls"><a href="#DOM-properties-for-form-controls" class="headerlink" title="DOM properties for form controls"></a>DOM properties for form controls</h2><ul>
+<li>value - the text/value chosen by the user</li>
+<li>checked - whether a box is checked</li>
+<li>disabled - whether a control is disabled (boolean)  </li>
+<li>readOnly - whether a text box is read-only</li>
+</ul>
+<h1 id="Javascript-events"><a href="#Javascript-events" class="headerlink" title="Javascript events"></a>Javascript events</h1><ul>
+<li>The Event Object</li>
+<li>Mouse Events</li>
+<li>Keyboard and Text Events</li>
+<li>Form Events</li>
+<li>Page Events</li>
+<li>Timer Events</li>
+</ul>
+<h2 id="Timer-events"><a href="#Timer-events" class="headerlink" title="Timer events"></a>Timer events</h2><ul>
+<li>setTimeout(function, delayMS);<ul>
+<li>arranges to call given function after given delay in ms</li>
+</ul>
+</li>
+<li>setInterval(function, delayMS);<ul>
+<li>arranges to call function repeatedly every delayMS ms</li>
+</ul>
+</li>
+<li>clearTimeout(timerID); clearInterval(timerID);<ul>
+<li>stops the given timer so it will not call its function</li>
+</ul>
+</li>
+<li>both setTimeout and setInterval return an ID representing the timer</li>
+</ul>
+<h2 id="Attaching-an-event-handler-in-JavaScript-code"><a href="#Attaching-an-event-handler-in-JavaScript-code" class="headerlink" title="Attaching an event handler in JavaScript code"></a>Attaching an event handler in JavaScript code</h2><ul>
+<li><p>bad style - write in HTML</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"okayClick();"</span>&gt;</span>OK<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>good style - write in JS code</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> okButton = <span class="built_in">document</span>.getElementById(<span class="string">"ok"</span>);</span><br><span class="line">okButton.onclick = okayClick;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="When-does-my-code-run"><a href="#When-does-my-code-run" class="headerlink" title="When does my code run?"></a>When does my code run?</h2><figure class="highlight xhtml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"myfile.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">body</span>&gt;</span> <span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// global code</span></span><br><span class="line"><span class="keyword">var</span> x = <span class="number">3</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">n</span>) </span>&#123; <span class="keyword">return</span> n + <span class="number">1</span>; &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params">n</span>) </span>&#123; <span class="keyword">return</span> n - <span class="number">1</span>; &#125;</span><br><span class="line">x = f(x);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>your file’s JS code runs the moment the browser loads the script tag<ul>
+<li>any variables are declared immediately</li>
+<li>any functions are declared but not called, unless your global code explicitly calls them</li>
+</ul>
+</li>
+<li>at this point in time, the browser has not yet read your page’s body<ul>
+<li>none of the DOM objects for tags on the page have been created yet</li>
+</ul>
+</li>
+</ul>
+<h2 id="window-onload-event"><a href="#window-onload-event" class="headerlink" title="window.onload event"></a>window.onload event</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"ok"</span>&gt;</span>OK<span class="tag">&lt;/<span class="name">button</span>&gt;</span>   <span class="comment">&lt;!-- look Ma, no JavaScript! --&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// called when page loads; sets up event handlers</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pageLoad</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"ok"</span>).onclick = okayClick;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">okayClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">"booyah"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.onload = pageLoad;  <span class="comment">// global code</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>event names are all lowercase, not capitalized like most variables<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onLoad = pageLoad; <span class="comment">//error</span></span><br><span class="line"><span class="built_in">window</span>.onload = pageLoad;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Unobtrusive-styling"><a href="#Unobtrusive-styling" class="headerlink" title="Unobtrusive styling"></a>Unobtrusive styling</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">okayClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.style.color = <span class="string">"red"</span>; <span class="comment">//bad style</span></span><br><span class="line">  <span class="keyword">this</span>.className = <span class="string">"highlighted"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.highlighted</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>well-written JavaScript code should contain as little CSS as possible</li>
+<li>use JS to set CSS classes/IDs on elements</li>
+<li>define the styles of those classes/IDs in your CSS file</li>
+</ul>
+<h2 id="Operating-on-the-DOM-tree"><a href="#Operating-on-the-DOM-tree" class="headerlink" title="Operating on  the DOM tree"></a>Operating on  the DOM tree</h2><ul>
+<li>appendChild(node)</li>
+<li>insertBefore(new, old)</li>
+<li>removeChild(node)</li>
+<li>replaceChild(new, old)</li>
+<li>getElementsByTagName</li>
+<li>getElementsByName</li>
+<li>querySelectorAll </li>
+<li><p>querySelector(selectors)</p>
+<ul>
+<li>先針對整個document下去找到符合selectors的objects，再從中取出第一個為baseElement的decendant的object</li>
+<li><p>The first descendant element of baseElement which matches the specified group of selectors. The entire hierarchy of elements is considered when matching, including those outside the set of elements including baseElement and its descendants; in other words, selectors is first applied to the whole document, not the baseElement, to generate an initial list of potential elements. The resulting elements are then examined to see if they are descendants of baseElement. The first match of those remaining elements is returned by the querySelector() method.</p>
+<p>If no matches are found, the returned value is null.</p>
+</li>
+<li><a href="http://www.w3schools.com/cssref/css_selectors.asp" target="_blank" rel="external">selectors</a>  must be valid CSS syntax</li>
+<li><p>e.g., the first &lt;style&gt; element which either has no type or has type “text/css” in the HTML document body is returned</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el = <span class="built_in">document</span>.body.querySelector(<span class="string">"style[type='text/css'], style:not([type])"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>e.g.,</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h5</span>&gt;</span>Original content<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    inside paragraph</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>inside span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    inside paragraph</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h5</span>&gt;</span>Output<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"output"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> baseElement = <span class="built_in">document</span>.querySelector(<span class="string">"p"</span>);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"output"</span>).innerHTML =</span><br><span class="line">         (baseElement.querySelector(<span class="string">"div span"</span>).innerHTML);</span><br></pre></td></tr></table></figure>
+<p>Notice how the “div span” selector still matches the <span> element, even though the baseElement excludes the div element which is part of the specified selector.</span></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Types-of-DOM-nodes"><a href="#Types-of-DOM-nodes" class="headerlink" title="Types of DOM nodes"></a>Types of DOM nodes</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  This is a paragraph of text with a </span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/path/page.html"</span>&gt;</span>link in it<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<img src="/blog/2016/06/27/Html/figure_4_dom_tree.png" alt="DOM nodes" title="DOM nodes">
+<ul>
+<li>element nodes (HTML tag) - can have children and/or attributes</li>
+<li>text nodes (text in a block element)</li>
+<li>attribute nodes (attribute/value pair)<ul>
+<li>text/attributes are children in an element node</li>
+<li>cannot have children or attributes</li>
+</ul>
+</li>
+</ul>
+<h2 id="Traversing-the-DOM-tree-manually"><a href="#Traversing-the-DOM-tree-manually" class="headerlink" title="Traversing the DOM tree manually"></a>Traversing the DOM tree manually</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"foo"</span>&gt;</span>This is a paragraph of text with a </span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/path/to/another/page.html"</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>every node’s DOM object has the following properties:<br><img src="/blog/2016/06/27/Html/figure_5_tree_structure.png" alt="figure_5_tree_structure.png" title=""></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    This is a paragraph of text with a </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"page.html"</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此例的div有三個children</p>
+<ol>
+<li>\n\t</li>
+<li>&lt; p &gt;</li>
+<li>\n\t</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    This is a paragraph of text with a </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"page.html"</span>&gt;</span>link<span class="tag">&lt;/<span class="name">a</span>&gt;</span>.</span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>若不換行,則本例剩下兩個children(少掉一個\n\t)</p>
+<ol>
+<li>&lt; p &gt;</li>
+<li>\n\t</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2016/06/01/theme/" itemprop="url">
                   theme
                 </a>
@@ -251,7 +518,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-06-01T11:39:55+08:00" content="2016-06-01">
               2016-06-01
             </time>
@@ -345,7 +612,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-02-23T10:11:12+08:00" content="2016-02-23">
               2016-02-23
             </time>
@@ -478,7 +745,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-02-19T15:31:49+08:00" content="2016-02-19">
               2016-02-19
             </time>
@@ -588,7 +855,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posté le</span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
             <time itemprop="dateCreated" datetime="2016-01-29T22:27:11+08:00" content="2016-01-29">
               2016-01-29
             </time>
@@ -627,117 +894,6 @@
 <img src="/blog/2016/01/29/VirtualBox-add-disk/add_disk_05.png" alt="image" title="image">
 <img src="/blog/2016/01/29/VirtualBox-add-disk/right_click.png" alt="image" title="image">
 <img src="/blog/2016/01/29/VirtualBox-add-disk/disk_mamagement.png" alt="image" title="image">
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2016/01/29/virtualbox/" itemprop="url">
-                  virtualbox全螢幕&共享資料夾
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posté le</span>
-            <time itemprop="dateCreated" datetime="2016-01-29T18:17:22+08:00" content="2016-01-29">
-              2016-01-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>剛安裝完後<br>兩項功能無法正常運作</p>
-<ol>
-<li>全螢幕</li>
-<li>共享資料夾</li>
-</ol>
-<h3 id="首先切換至full-screen，發現根本沒變"><a href="#首先切換至full-screen，發現根本沒變" class="headerlink" title="首先切換至full screen，發現根本沒變"></a>首先切換至full screen，發現根本沒變</h3><img src="/blog/2016/01/29/virtualbox/fullscreen_failed.png" alt="This is an example image" title="This is an example image">
-<h3 id="再來隨便設一個shared-folder看看"><a href="#再來隨便設一個shared-folder看看" class="headerlink" title="再來隨便設一個shared folder看看"></a>再來隨便設一個shared folder看看</h3><img src="/blog/2016/01/29/virtualbox/shared_folder_00.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/shared_folder_01.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/shared_folder_02.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/shared_not_found.png" alt="This is an example image" title="This is an example image">
-<h3 id="解決方法：安裝Guest-Additions"><a href="#解決方法：安裝Guest-Additions" class="headerlink" title="解決方法：安裝Guest Additions"></a>解決方法：安裝Guest Additions</h3><img src="/blog/2016/01/29/virtualbox/insert_image.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/my_computer.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/launch.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/installation_01.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/installation_02.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/installation_03.png" alt="This is an example image" title="This is an example image">
-<img src="/blog/2016/01/29/virtualbox/installation_04.png" alt="This is an example image" title="This is an example image">
-<h3 id="安裝完成後，全螢幕跟共享資料夾都回來了"><a href="#安裝完成後，全螢幕跟共享資料夾都回來了" class="headerlink" title="安裝完成後，全螢幕跟共享資料夾都回來了"></a>安裝完成後，全螢幕跟共享資料夾都回來了</h3><img src="/blog/2016/01/29/virtualbox/success.png" alt="This is an example image" title="This is an example image">
 
           
         
@@ -811,8 +967,8 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">13</span>
-              <span class="site-state-item-name">articles</span>
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
@@ -821,8 +977,8 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
-                <span class="site-state-item-count">22</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">Tags</span>
               </a>
             </div>
           
@@ -866,11 +1022,11 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
