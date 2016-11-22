@@ -239,7 +239,7 @@
               
                 
                 <a class="post-title-link" href="/blog/2016/11/22/sql-update/" itemprop="url">
-                  sql_update
+                  SQL Update
                 </a>
               
             
@@ -282,8 +282,8 @@
       
         
           
-            <p>Update rows from another table.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  q</span><br><span class="line"><span class="keyword">SET</span>     country = a.country</span><br><span class="line"><span class="keyword">FROM</span>    quantity q</span><br><span class="line"><span class="keyword">JOIN</span>    acronym a</span><br><span class="line"><span class="keyword">ON</span>      a.acronym = q.country</span><br></pre></td></tr></table></figure>
+            <h1 id="Update-rows-from-another-table"><a href="#Update-rows-from-another-table" class="headerlink" title="Update rows from another table."></a>Update rows from another table.</h1><h3 id="For-SQL-Server"><a href="#For-SQL-Server" class="headerlink" title="For SQL Server"></a>For SQL Server</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  q</span><br><span class="line"><span class="keyword">SET</span>     country = a.country</span><br><span class="line"><span class="keyword">FROM</span>    quantity q</span><br><span class="line"><span class="keyword">JOIN</span>    acronym a</span><br><span class="line"><span class="keyword">ON</span>      a.acronym = q.country</span><br></pre></td></tr></table></figure>
+<h3 id="FOR-MySQL"><a href="#FOR-MySQL" class="headerlink" title="FOR MySQL"></a>FOR MySQL</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table1 <span class="keyword">JOIN</span> table2 </span><br><span class="line">    <span class="keyword">ON</span> table1.id = table2.id</span><br><span class="line"><span class="keyword">SET</span> table1.name = table2.name,</span><br><span class="line">    table1.[<span class="keyword">desc</span>] = table2.[<span class="keyword">desc</span>]</span><br></pre></td></tr></table></figure>
 
           
         
