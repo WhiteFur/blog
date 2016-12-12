@@ -175,7 +175,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -185,7 +185,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -251,7 +251,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-11-22T11:36:22+08:00" content="2016-11-22">
               2016-11-22
             </time>
@@ -283,6 +283,7 @@
         
           
             <h1 id="Update-rows-from-another-table"><a href="#Update-rows-from-another-table" class="headerlink" title="Update rows from another table."></a>Update rows from another table.</h1><h3 id="For-SQL-Server"><a href="#For-SQL-Server" class="headerlink" title="For SQL Server"></a>For SQL Server</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span>  q</span><br><span class="line"><span class="keyword">SET</span>     country = a.country</span><br><span class="line"><span class="keyword">FROM</span>    quantity q</span><br><span class="line"><span class="keyword">JOIN</span>    acronym a</span><br><span class="line"><span class="keyword">ON</span>      a.acronym = q.country</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> TOP (<span class="number">1000</span>) dbo.accounting_TableDailyPerformance</span><br><span class="line"><span class="keyword">SET</span> [startTime] = s.startTime</span><br><span class="line"><span class="keyword">FROM</span> dbo.UV_TableDailyScope s</span><br><span class="line"><span class="keyword">WHERE</span> accounting_TableDailyPerformance.recordID = s.recordID</span><br></pre></td></tr></table></figure>
 <h3 id="FOR-MySQL"><a href="#FOR-MySQL" class="headerlink" title="FOR MySQL"></a>FOR MySQL</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table1 <span class="keyword">JOIN</span> table2 </span><br><span class="line">    <span class="keyword">ON</span> table1.id = table2.id</span><br><span class="line"><span class="keyword">SET</span> table1.name = table2.name,</span><br><span class="line">    table1.[<span class="keyword">desc</span>] = table2.[<span class="keyword">desc</span>]</span><br></pre></td></tr></table></figure>
 
           
@@ -346,7 +347,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-09-22T14:13:52+08:00" content="2016-09-22">
               2016-09-22
             </time>
@@ -447,7 +448,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-08-22T13:22:27+08:00" content="2016-08-22">
               2016-08-22
             </time>
@@ -554,7 +555,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-11T17:40:09+08:00" content="2016-07-11">
               2016-07-11
             </time>
@@ -679,7 +680,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-06-27T14:08:16+08:00" content="2016-06-27">
               2016-06-27
             </time>
@@ -790,7 +791,7 @@
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
               <span class="site-state-item-count">14</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -800,7 +801,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/blog/tags">
                 <span class="site-state-item-count">24</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -844,7 +845,7 @@
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
