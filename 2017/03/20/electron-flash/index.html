@@ -12,7 +12,7 @@
     
         <meta name="description" content="For security purposes, webview can only be used in BrowserWindows that have nodeIntegration enabled.
 
-#####js file12345678910111213141516171819202122c">
+js file12345678910111213141516171819202122const ">
     
 
     <!--Author-->
@@ -22,7 +22,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="electron-flash"/>
+        <meta property="og:title" content="Load flash in Electron"/>
     
 
     <!--Open Graph Description-->
@@ -44,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>electron-flash - whiteFur</title>
+    <title>Load flash in Electron - whiteFur</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -138,7 +138,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <h1>electron-flash</h1>
+                    <h1>Load flash in Electron</h1>
                     
                     <span class="meta">
                         <!-- Date and Author -->
@@ -181,9 +181,9 @@
                 <blockquote>
 <p>For security purposes, webview can only be used in BrowserWindows that have nodeIntegration enabled.</p>
 </blockquote>
-<p>#####js file<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;app, BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//flash安裝的路徑</span></span><br><span class="line"><span class="keyword">const</span> flashPath = app.getPath(<span class="string">'pepperFlashSystemPlugin'</span>);</span><br><span class="line">app.commandLine.appendSwitch(<span class="string">'ppapi-flash-path'</span>, flashPath)</span><br><span class="line"></span><br><span class="line"><span class="comment">//目前安裝的flash版本</span></span><br><span class="line">app.commandLine.appendSwitch(<span class="string">'ppapi-flash-version'</span>, <span class="string">'25.0.0.127'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ppapi-flash-path跟ppapi-flash-version一定要寫在on ready之前</span></span><br><span class="line">app.on(<span class="string">'ready'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> win = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    width: <span class="number">800</span>,</span><br><span class="line">    height: <span class="number">600</span>,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      <span class="comment">//plugins設為true, 而且nodeIntegration需為true</span></span><br><span class="line">      plugins: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  win.loadURL(<span class="string">`file://<span class="subst">$&#123;__dirname&#125;</span>/index.html`</span>)</span><br><span class="line">  <span class="comment">// Something else</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>####html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--使用&amp;lt;webview&amp;gt;來載入flash並且加上plugins attribute--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">webview</span> <span class="attr">id</span>=<span class="string">"foo"</span> <span class="attr">src</span>=<span class="string">"http://cache.download.banner.dragonfish88.com/casinoclient.html?game=lvb&amp;language=EN&amp;nolobby=1"</span> <span class="attr">style</span>=<span class="string">"display:inline-flex; width:640px; height:480px"</span> <span class="attr">plugins</span>&gt;</span><span class="tag">&lt;/<span class="name">webview</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>###Referance<br><a href="https://github.com/electron/electron/blob/master/docs/tutorial/using-pepper-flash-plugin.md" target="_blank" rel="external">https://github.com/electron/electron/blob/master/docs/tutorial/using-pepper-flash-plugin.md</a></p>
+<h5 id="js-file"><a href="#js-file" class="headerlink" title="js file"></a>js file</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;app, BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//flash安裝的路徑</span></span><br><span class="line"><span class="keyword">const</span> flashPath = app.getPath(<span class="string">'pepperFlashSystemPlugin'</span>);</span><br><span class="line">app.commandLine.appendSwitch(<span class="string">'ppapi-flash-path'</span>, flashPath)</span><br><span class="line"></span><br><span class="line"><span class="comment">//目前安裝的flash版本</span></span><br><span class="line">app.commandLine.appendSwitch(<span class="string">'ppapi-flash-version'</span>, <span class="string">'25.0.0.127'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ppapi-flash-path跟ppapi-flash-version一定要寫在on ready之前</span></span><br><span class="line">app.on(<span class="string">'ready'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> win = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    width: <span class="number">800</span>,</span><br><span class="line">    height: <span class="number">600</span>,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      <span class="comment">//plugins設為true, 而且nodeIntegration需為true</span></span><br><span class="line">      plugins: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  win.loadURL(<span class="string">`file://<span class="subst">$&#123;__dirname&#125;</span>/index.html`</span>)</span><br><span class="line">  <span class="comment">// Something else</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="html"><a href="#html" class="headerlink" title="html"></a>html</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--使用&amp;lt;webview&amp;gt;來載入flash並且加上plugins attribute--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">webview</span> <span class="attr">id</span>=<span class="string">"foo"</span> <span class="attr">src</span>=<span class="string">"http://cache.download.banner.dragonfish88.com/casinoclient.html?game=lvb&amp;language=EN&amp;nolobby=1"</span> <span class="attr">style</span>=<span class="string">"display:inline-flex; width:640px; height:480px"</span> <span class="attr">plugins</span>&gt;</span><span class="tag">&lt;/<span class="name">webview</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Referance"><a href="#Referance" class="headerlink" title="Referance"></a>Referance</h3><p><a href="https://github.com/electron/electron/blob/master/docs/tutorial/using-pepper-flash-plugin.md" target="_blank" rel="external">https://github.com/electron/electron/blob/master/docs/tutorial/using-pepper-flash-plugin.md</a></p>
 
 
                 
