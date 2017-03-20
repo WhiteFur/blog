@@ -11,8 +11,7 @@
     <!--Description-->
     
         <meta name="description" content="1const &amp;#123;app, BrowserWindow&amp;#125; = require(&#39;electron&#39;)
-以上會把electron的exports.app跟exports.BrowserWindow assign 給 app 跟 BrowserWindow 這兩個variables
-#">
+以上會把electron的exports.app跟exports.BrowserWindow assign 給 app 跟 BrowserWindow 這兩個variables注意">
     
 
     <!--Author-->
@@ -165,7 +164,8 @@
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;app, BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br></pre></td></tr></table></figure>
-<p>以上會把electron的exports.app跟exports.BrowserWindow assign 給 app 跟 BrowserWindow 這兩個variables</p>
+<p>以上會把electron的exports.app跟exports.BrowserWindow assign 給 app 跟 BrowserWindow 這兩個variables<br>注意: 變數名稱一定要跟欲解構的property name一樣</p>
+<p>錯誤用法:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ccc is undefined</span></span><br><span class="line">  <span class="keyword">const</span> &#123;ccc, BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br></pre></td></tr></table></figure></p>
 <p>###Reference<br><a href="http://eddychang.me/blog/16-javascript/44-destructuring-assignment.html" target="_blank" rel="external">http://eddychang.me/blog/16-javascript/44-destructuring-assignment.html</a></p>
 
 
