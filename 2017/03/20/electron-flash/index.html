@@ -10,6 +10,8 @@
 
     <!--Description-->
     
+        <meta name="description" content="###直接上範例123456789101112131415161718192021const &amp;#123;app, BrowserWindow&amp;#125; = require(&#39;electron&#39;)//flash安裝的路徑const flashPath = app.getPath(&#39;pepperFl">
+    
 
     <!--Author-->
     
@@ -18,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="whiteFur"/>
+        <meta property="og:title" content="electron-flash"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +31,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +42,7 @@
 
     <!-- Title -->
     
-    <title>page - whiteFur</title>
+    <title>electron-flash - whiteFur</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -127,83 +129,71 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>whiteFur</h1>
-                    <hr class="small">
-                    <span class="subheading"></span>
+                <div class="post-heading">
+                    <h1>electron-flash</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-03-20
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            
-                <div class="post-preview">
-    <a href="/blog/2015/12/18/Capital/">
-        <h2 class="post-title">
-            Capital
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2015-12-18
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/blog/2015/11/17/GCMS-note/">
-        <h2 class="post-title">
-            GCMS note
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2015-11-17
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/blog/2015/11/06/chakram-usage/">
-        <h2 class="post-title">
-            Using Chakram to test your Restful API
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2015-11-06
-    </p>
-</div>
-<hr>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/blog/tags/electro/">#electro</a> <a href="/blog/tags/flash/">#flash</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
             
 
-            <ul class="pager">
-    
-        <li class="previous"><a href="/blog/page/3/">&larr;  Newer Posts</a></li>
-    
-    
-</ul>
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p>###直接上範例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;app, BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//flash安裝的路徑</span></span><br><span class="line"><span class="keyword">const</span> flashPath = app.getPath(<span class="string">'pepperFlashSystemPlugin'</span>);</span><br><span class="line">app.commandLine.appendSwitch(<span class="string">'ppapi-flash-path'</span>, flashPath)</span><br><span class="line"></span><br><span class="line"><span class="comment">//目前安裝的flash版本</span></span><br><span class="line">app.commandLine.appendSwitch(<span class="string">'ppapi-flash-version'</span>, <span class="string">'25.0.0.127'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//ppapi-flash-path跟ppapi-flash-version一定要寫在on ready之前</span></span><br><span class="line">app.on(<span class="string">'ready'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> win = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    width: <span class="number">800</span>,</span><br><span class="line">    height: <span class="number">600</span>,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      plugins: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  win.loadURL(<span class="string">`file://<span class="subst">$&#123;__dirname&#125;</span>/index.html`</span>)</span><br><span class="line">  <span class="comment">// Something else</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>###Referance<br><a href="https://github.com/electron/electron/blob/master/docs/tutorial/using-pepper-flash-plugin.md" target="_blank" rel="external">https://github.com/electron/electron/blob/master/docs/tutorial/using-pepper-flash-plugin.md</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr />
