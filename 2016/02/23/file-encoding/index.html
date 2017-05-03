@@ -194,29 +194,29 @@ Determine the encoding有兩種做法
 <h3 id="Determine-the-encoding"><a href="#Determine-the-encoding" class="headerlink" title="Determine the encoding"></a>Determine the encoding</h3><p>有兩種做法</p>
 <ol>
 <li><p>使用Unix的file command</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ file app.js</span><br><span class="line">app.js: UTF-8 Unicode C++ program text</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ file app.js</div><div class="line">app.js: UTF-8 Unicode C++ program text</div></pre></td></tr></table></figure>
 <p> 不過有時候會猜不準<br> e.g. app.js明明是utf-8，但是因為都是英數字元，所以「file」就以為app.js是ASCII</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ file app.js</span><br><span class="line">app.js: ASCII C++ program text</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ file app.js</div><div class="line">app.js: ASCII C++ program text</div></pre></td></tr></table></figure>
 </li>
 <li><p>使用vim的fileencdoing</p>
- <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> fileencdoing</span><br></pre></td></tr></table></figure>
+ <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> fileencdoing</div></pre></td></tr></table></figure>
 <p> 得知該檔的encoding</p>
- <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fileencdoing=utf-<span class="number">16</span><span class="keyword">le</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fileencdoing=utf-<span class="number">16</span><span class="keyword">le</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="Convert-to-another-encoding"><a href="#Convert-to-another-encoding" class="headerlink" title="Convert to another encoding"></a>Convert to another encoding</h3><p>有兩種做法</p>
 <ol>
 <li><p>使用Unix的iconv</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iconv <span class="_">-f</span> UTF-16LE -t UTF8 input.sql &gt; output.sql</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iconv <span class="_">-f</span> UTF-16LE -t UTF8 input.sql &gt; output.sql</div></pre></td></tr></table></figure>
 <blockquote>
 <p>-f encoding, –from-code=encoding<br> Specifies the encoding of the input.</p>
 <p>-t encoding, –to-code=encoding<br> Specifies the encoding of the output.</p>
 </blockquote>
 <p> list the supported encodings</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iconv <span class="_">-l</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iconv <span class="_">-l</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>用vim指定編碼再存檔</p>
- <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> fileencoding=utf8</span><br><span class="line">:<span class="keyword">w</span> myfilename</span><br></pre></td></tr></table></figure>
+ <figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> fileencoding=utf8</div><div class="line">:<span class="keyword">w</span> myfilename</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>事實上，<br>我們無從得知file encoding為何，<br>VIM也只是根據檔案內容去猜它的encoding而已，<br>除非該檔有寫bom明確指出該檔案的encoding</p>

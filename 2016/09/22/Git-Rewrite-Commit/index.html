@@ -164,13 +164,13 @@
 
             <!-- Post Main Content -->
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p>修改最近一個commit:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
-<p>但如果要修改多個commit則可利用rebase -i<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase -i 0b4cb1e</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pick f7f3f6d changed my name a bit</span><br><span class="line">pick 310154e updated README formatting and added blame</span><br><span class="line">pick a5f4a0d added cat-file</span><br></pre></td></tr></table></figure>
+                <p>修改最近一個commit:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend</div></pre></td></tr></table></figure></p>
+<p>但如果要修改多個commit則可利用rebase -i<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rebase -i 0b4cb1e</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pick f7f3f6d changed my name a bit</div><div class="line">pick 310154e updated README formatting and added blame</div><div class="line">pick a5f4a0d added cat-file</div></pre></td></tr></table></figure>
 <p>表示從f7f3f6d這個commit以後的commit都逐一rebase<br>把欲修改的commit的pick改成edit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">edit f7f3f6d changed my name a bit</span><br><span class="line">pick 310154e updated README formatting and added blame</span><br><span class="line">edit a5f4a0d added cat-file</span><br></pre></td></tr></table></figure>
-<p>此時就會回到f7f3f6d, 可執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure></p>
-<p>修改完後執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit --continue</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">edit f7f3f6d changed my name a bit</div><div class="line">pick 310154e updated README formatting and added blame</div><div class="line">edit a5f4a0d added cat-file</div></pre></td></tr></table></figure>
+<p>此時就會回到f7f3f6d, 可執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend</div></pre></td></tr></table></figure></p>
+<p>修改完後執行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --continue</div></pre></td></tr></table></figure></p>
 <p>就會再到下一個commit<br>重覆amend &amp; continue即可逐一修改commit</p>
 
 
