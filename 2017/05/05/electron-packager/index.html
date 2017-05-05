@@ -10,6 +10,10 @@
 
     <!--Description-->
     
+        <meta name="description" content="usage1electron-packager &amp;lt;sourcedir&amp;gt; &amp;lt;appname&amp;gt; --platform=&amp;lt;platform&amp;gt; --arch=&amp;lt;arch&amp;gt; [optional flags...]
+This will:
+Find or downl">
+    
 
     <!--Author-->
     
@@ -18,7 +22,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="whiteFur"/>
+        <meta property="og:title" content="electron-packager"/>
     
 
     <!--Open Graph Description-->
@@ -29,7 +33,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
     
 
     <!--Page Cover-->
@@ -40,7 +44,7 @@
 
     <!-- Title -->
     
-    <title>page - whiteFur</title>
+    <title>electron-packager - whiteFur</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -127,115 +131,94 @@
 
     <!-- Main Content -->
     <!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
 <header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>whiteFur</h1>
-                    <hr class="small">
-                    <span class="subheading"></span>
+                <div class="post-heading">
+                    <h1>electron-packager</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2017-05-05
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            
-                <div class="post-preview">
-    <a href="/blog/2017/03/20/destrcuturing-assignment/">
-        <h2 class="post-title">
-            Destrcuturing Assignment
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-03-20
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/blog/2017/03/15/vue-mount-element/">
-        <h2 class="post-title">
-            vue-mount-element
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-03-15
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/blog/2017/03/13/vue-router/">
-        <h2 class="post-title">
-            vue-router
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-03-13
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/blog/2016/11/22/sql-update/">
-        <h2 class="post-title">
-            SQL Update
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2016-11-22
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/blog/2016/09/22/Git-Rewrite-Commit/">
-        <h2 class="post-title">
-            Git-Rewrite-Commit
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2016-09-22
-    </p>
-</div>
-<hr>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/blog/tags/electron/">#electron</a> <a href="/blog/tags/electron-packager/">#electron-packager</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
             
 
-            <ul class="pager">
-    
-        <li class="previous"><a href="/blog/">&larr;  Newer Posts</a></li>
-    
-    
-        <li class="next"><a href="/blog/page/3/">Older Posts  &rarr;</a></li>
-    
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h3 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">electron-packager &lt;sourcedir&gt; &lt;appname&gt; --platform=&lt;platform&gt; --arch=&lt;arch&gt; [optional flags...]</div></pre></td></tr></table></figure>
+<p>This will:</p>
+<p>Find or download the correct release of Electron<br>Use that version of Electron to create a app in <out>/<appname>-<platform>-<arch> (this can be customized via an optional flag)</arch></platform></appname></out></p>
+<p>一般來說只要指定 platform 跟 arch即可<br>electron-packager 會從 package.json 的 devDependencies 或 dependencies 來判斷所要使用的 electron 版本<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">electron-packager . EGames --platform=win32 --arch=x64 --overwrite</div></pre></td></tr></table></figure></p>
+<p>否則就必需使用 electronVersion flag 來指定版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">electron-packager . EGames --platform=win32 --arch=x64 --electronVersion=1.6.6 --overwrite</div></pre></td></tr></table></figure></p>
+<ul>
+<li><h4 id="platform"><a href="#platform" class="headerlink" title="platform"></a>platform</h4><p>  String (default: the arch of the host computer running Node)</p>
+<p>  Allowed values: linux, win32, darwin, mas, all</p>
+<p>  The target platform(s) to build for. Not required if the all option is set. If platform is set to all, all supported target platforms for the target architectures specified by arch will be built. Arbitrary combinations of individual platforms are also supported via a comma-delimited string or array of strings. The non-all values correspond to the platform names used by Electron releases.</p>
+</li>
 </ul>
+<ul>
+<li><h4 id="arch"><a href="#arch" class="headerlink" title="arch"></a>arch</h4><p>  String (default: the arch of the host computer running Node)</p>
+<p>  Allowed values: ia32, x64, armv7l, all</p>
+<p>  The target system architecture(s) to build for. Not required if the all option is set. If arch is set to all, all supported architectures for the target platforms specified by platform will be built. Arbitrary combinations of individual architectures are also supported via a comma-delimited string or array of strings. The non-all values correspond to the architecture names used by Electron releases.</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="electronVersion"><a href="#electronVersion" class="headerlink" title="electronVersion"></a>electronVersion</h4><p>  String</p>
+<p>  The Electron version with which the app is built (without the leading ‘v’) - for example, 1.4.13. See Electron releases for valid versions. If omitted, it will use the version of the nearest local installation of electron, electron-prebuilt-compile, or electron-prebuilt, defined in package.json in either dependencies or devDependencies.</p>
+</li>
+<li><h4 id="overwrite"><a href="#overwrite" class="headerlink" title="overwrite"></a>overwrite</h4><p>  if output directory for a platform already exists, replaces it rather than skipping it</p>
+</li>
+</ul>
+<p>###Reference<br><a href="https://github.com/electron-userland/electron-packager/blob/master/usage.txt" target="_blank" rel="external">electron-packager usage and its options</a></p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
-</div>
-
-
+</article>
 
     <!-- Footer -->
     <hr />
