@@ -355,8 +355,8 @@
 <li>事實上supervisor的作用就是用來confirm的，所以其實程式面也可以不必檢查supervisor的limit，因為實務上會把supervisor的limit設很高</li>
 </ul>
 <h1 id="Jackpot"><a href="#Jackpot" class="headerlink" title="Jackpot"></a>Jackpot</h1><ul>
-<li>mystery jackpot(神秘彩金): 由jackpot controller設定的一個神秘值(有一定上限), 當機台押分超過那個值, 就會拉到jackpot</li>
-<li>Progressive jackpot: 機台自己決定的jackpot</li>
+<li>mystery jackpot(神秘彩金): 由jackpot controller設定的一個神秘值(有一定上限), 當機台押分hit到那個值, 就會拉到jackpot(即該值), range為固定值</li>
+<li>Progressive jackpot: 機台自己決定的jackpot, 押分不斷累加上去，每一把押分有機率拉中jackpot，但沒有range</li>
 </ul>
 
 
@@ -405,7 +405,7 @@
 
                     
                 </ul>
-                <p class="copyright text-muted">&copy; 2018 whiteFur<br></p>
+                <p class="copyright text-muted">&copy; 2019 whiteFur<br></p>
                 <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
                 <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
             </div>
